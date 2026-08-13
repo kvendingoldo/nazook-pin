@@ -3,14 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Значок «Назук» — для тех, кто из Саратова</title>
-<meta name="description" content="Значок, по которому саратовцы узнают друг друга. Наша история и мы сами — с контактами.">
+<title>Значок «Назук» — знак для саратовцев по всему миру</title>
+<meta name="description" content="Эмалевый значок в виде назука: по нему саратовцы узнают своих в любом городе. История значка и его авторы — с контактами для связи.">
+<link rel="canonical" href="https://kvendingoldo.github.io/nazook-pin/">
 <link rel="icon" href="assets/nazuk.png" type="image/png">
+<meta name="theme-color" content="#cfe6f8">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Значок «Назук» — для тех, кто из Саратова">
-<meta property="og:description" content="Значок, по которому саратовцы узнают друг друга.">
-<meta property="og:image" content="assets/nazuk.png">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Значок «Назук»">
+<meta property="og:url" content="https://kvendingoldo.github.io/nazook-pin/">
+<meta property="og:title" content="Значок «Назук» — знак для саратовцев по всему миру">
+<meta property="og:description" content="Носишь значок — и свои узнают тебя в любом городе. История значка и его авторы.">
+<meta property="og:image" content="https://kvendingoldo.github.io/nazook-pin/assets/nazuk.png">
+<meta property="og:image:width" content="1254">
+<meta property="og:image:height" content="1254">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
 <!--
   ЧТО ЗАМЕНИТЬ ПОЗЖЕ:
@@ -24,12 +36,13 @@
     --sky:      #cfe6f8;
     --sky-soft: #e4f1fb;
     --ink:      #17303f;
-    --ink-soft: #5a7b90;
+    --ink-soft: #476a80;
     --line:     #d3e4f0;
     --volga:    #2f7bab;
     --volga-lt: #8fc2e2;
     --gold:     #c07a2e;
     --ease:     cubic-bezier(.22, .61, .36, 1);
+    --font:     "Nunito", ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
   * { box-sizing: border-box; }
@@ -39,20 +52,29 @@
     margin: 0;
     background: var(--paper);
     color: var(--ink);
-    font: 400 16px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font: 400 16.5px/1.65 var(--font);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
   h1, h2, h3 {
-    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    font-weight: 400;
-    line-height: 1.14;
+    font-family: var(--font);
+    font-weight: 700;
+    line-height: 1.2;
     margin: 0 0 .4em;
-    letter-spacing: -.015em;
+    letter-spacing: -.02em;
+    text-wrap: balance;
   }
 
+  p { text-wrap: pretty; }
+
   a { color: var(--volga); }
+
+  :focus-visible {
+    outline: 2px solid var(--volga);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 
   .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
 
@@ -67,7 +89,6 @@
     margin: 0 0 1rem;
   }
   .label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
-  .label b { color: var(--volga); font-weight: 500; }
 
   /* ---------------- герой ---------------- */
   .hero {
@@ -81,7 +102,7 @@
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1.1fr .9fr;
+    grid-template-columns: 1.15fr .85fr;
     gap: clamp(1.5rem, 4vw, 3rem);
     align-items: center;
     padding-bottom: clamp(7rem, 16vw, 11rem);
@@ -98,7 +119,7 @@
     margin-bottom: 1.2rem;
     background: rgba(255, 255, 255, .65);
   }
-  .hero h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); margin-bottom: .35em; }
+  .hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.15rem); margin-bottom: .35em; }
   .hero h1 em { display: block; font-style: normal; color: var(--volga); }
   .hero .lead { max-width: 40ch; margin: 0; color: var(--ink-soft); }
   .hero__cta { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
@@ -152,20 +173,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(1.4rem, 4vw, 3rem);
-    align-items: start;
+    align-items: center;
   }
   @media (max-width: 780px) { .story__grid { grid-template-columns: 1fr; } }
   .story h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); max-width: 16ch; }
-  .story p { color: var(--ink-soft); margin: 0 0 .9em; font-size: .97rem; }
+  .story p { color: var(--ink-soft); margin: 0 0 .9em; }
   .story p:last-child { margin-bottom: 0; }
   .story strong { color: var(--ink); font-weight: 500; }
   .pull {
     margin: 0;
     padding: .2rem 0 .2rem 1.2rem;
-    border-left: 2px solid var(--gold);
-    font-family: "Iowan Old Style", Georgia, serif;
-    font-size: clamp(1rem, 2.2vw, 1.2rem);
-    line-height: 1.45;
+    border-left: 3px solid var(--gold);
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
   }
 
   /* ---------------- авторы ---------------- */
@@ -175,7 +197,7 @@
     padding: clamp(2.6rem, 6vw, 4rem) 0;
   }
   .authors h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin-bottom: .2em; }
-  .authors .intro { color: var(--ink-soft); max-width: 52ch; margin: 0; font-size: .95rem; }
+  .authors .intro { color: var(--ink-soft); max-width: 60ch; margin: 0; text-wrap: balance; }
 
   .cards {
     display: grid;
@@ -201,25 +223,21 @@
     border-color: var(--volga-lt);
   }
   .card__avatar {
-    width: 78px;
-    height: 78px;
+    width: 124px;
+    height: 124px;
     border-radius: 50%;
     overflow: hidden;
     display: grid;
     place-items: center;
-    margin-bottom: .7rem;
+    margin-bottom: .9rem;
     background: linear-gradient(150deg, var(--volga-lt), var(--volga));
     color: #fff;
-    font-family: "Iowan Old Style", Georgia, serif;
-    font-size: 1.7rem;
-    box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--line);
+    font-size: 2.6rem;
+    font-weight: 600;
+    box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px var(--line);
   }
   .card__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .card--gold .card__avatar { background: linear-gradient(150deg, #e8bd7e, var(--gold)); }
-  .card__role { font-size: .63rem; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-soft); margin: 0; }
   .card h3 { margin: 0; font-size: 1.15rem; }
-  .card .bio { margin: 0; color: var(--ink-soft); font-size: .87rem; }
-  .card--gold h3 { color: var(--gold); }
 
   .links { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-top: 1rem; }
   .links a {
@@ -263,11 +281,11 @@
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
-        <span class="kicker">Саратов · для своих</span>
-        <h1>Значок «Назук»<em>Для тех, кто из Саратова</em></h1>
+        <span class="kicker">Саратов · значок для своих</span>
+        <h1>Значок «Назук»<em>Свой своего узнает</em></h1>
         <p class="lead">
-          Мы сделали значок, по которому саратовцы узнают друг друга.
-          Носи его — и однажды в чужом городе кто-то улыбнётся тебе
+          Эмалевый значок в виде назука — той самой выпечки. Носишь его —
+          и в любом городе мира кто-то из саратовцев улыбнётся тебе
           как старому знакомому.
         </p>
         <div class="hero__cta">
@@ -277,7 +295,9 @@
       </div>
 
       <div class="pin-wrap">
-        <img class="pin" src="assets/nazuk.png" alt="Значок «Назук»: два кусочка выпечки" width="1254" height="1254">
+        <img class="pin" src="assets/nazuk.png" width="1254" height="1254"
+             fetchpriority="high" decoding="async"
+             alt="Эмалевый значок «Назук» — два назука с золотистой корочкой">
       </div>
     </div>
 
@@ -332,7 +352,7 @@
   <!-- ================= ИСТОРИЯ ================= -->
   <section id="story" class="story">
     <div class="wrap">
-      <p class="label"><b>01</b> История</p>
+      <p class="label">История</p>
 
       <div class="story__grid">
         <div>
@@ -350,8 +370,8 @@
             даже если вы совсем незнакомы.
           </p>
           <p>
-            Так и появился <strong>значок «Назук»</strong>. Маленький кусочек
-            выпечки на куртке или рюкзаке — знак, что ты свой. Увидели такой же
+            Так и появился <strong>эмалевый значок «Назук»</strong>. Тёплая
+            выпечка на куртке или рюкзаке — знак, что ты свой. Увидели такой же
             у кого-то? Подходите и знакомьтесь, повод уже есть.
           </p>
         </div>
@@ -362,19 +382,23 @@
   <!-- ================= АВТОРЫ ================= -->
   <section id="authors" class="authors">
     <div class="wrap">
-      <p class="label"><b>02</b> Авторы</p>
+      <p class="label">Авторы</p>
       <h2>Нас трое</h2>
-      <p class="intro">Придумывали и рисовали вместе. Пишите нам — всегда рады своим.</p>
+      <p class="intro">
+        Придумали, нарисовали, договорились с производством, получили тираж,
+        упаковали и развезли значки своим. Всё сами, без чужих рук.
+        Пишите нам — будем рады.
+      </p>
 
       <div class="cards">
 
         <!-- TODO: имя и ссылки -->
         <article class="card">
-          <!-- фото: <img src="assets/author-1.jpg" alt="Имя Фамилия"> внутрь .card__avatar -->
-          <div class="card__avatar">И</div>
-          <p class="card__role">Дизайн</p>
-          <h3>Имя Фамилия</h3>
-          <p class="bio">Придумал, как значок будет выглядеть.</p>
+          <div class="card__avatar">
+            <img src="assets/nastya.jpg" alt="Настя Меренцова — автор дизайна значка «Назук»"
+                 width="450" height="600" loading="lazy" style="object-position: 42% 32%">
+          </div>
+          <h3>Настя Меренцова</h3>
           <div class="links">
             <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -387,13 +411,13 @@
           </div>
         </article>
 
-        <!-- TODO: имя и ссылки -->
+        <!-- TODO: ссылки -->
         <article class="card">
-          <!-- фото: <img src="assets/author-2.jpg" alt="Имя Фамилия"> внутрь .card__avatar -->
-          <div class="card__avatar">И</div>
-          <p class="card__role">Идея</p>
-          <h3>Имя Фамилия</h3>
-          <p class="bio">С этого человека всё и началось.</p>
+          <div class="card__avatar">
+            <img src="assets/sasha.jpg" alt="Александр Шаров — один из авторов идеи значка «Назук»"
+                 width="400" height="600" loading="lazy" style="object-position: 45% 18%">
+          </div>
+          <h3>Александр Шаров</h3>
           <div class="links">
             <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -406,13 +430,13 @@
           </div>
         </article>
 
-        <!-- TODO: имя и ссылки -->
+        <!-- TODO: ссылки -->
         <article class="card">
-          <!-- фото: <img src="assets/author-2.jpg" alt="Имя Фамилия"> внутрь .card__avatar -->
-          <div class="card__avatar">И</div>
-          <p class="card__role">Идея</p>
-          <h3>Имя Фамилия</h3>
-          <p class="bio">С этого человека всё и началось.</p>
+          <div class="card__avatar">
+            <img src="assets/sanya.jpg" alt="Александр Ермолаев — один из авторов идеи значка «Назук»"
+                 width="600" height="600" loading="lazy" style="object-position: 50% 42%">
+          </div>
+          <h3>Александр Ермолаев</h3>
           <div class="links">
             <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -432,6 +456,20 @@
 </main>
 
 <footer>Сделано в Саратове с любовью · <span id="year">2026</span></footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Значок «Назук»",
+  "description": "Эмалевый значок в виде назука — опознавательный знак саратовцев: по нему земляки узнают друг друга в любом городе.",
+  "image": "https://kvendingoldo.github.io/nazook-pin/assets/nazuk.png",
+  "url": "https://kvendingoldo.github.io/nazook-pin/",
+  "material": "Эмаль",
+  "brand": { "@type": "Brand", "name": "Назук" },
+  "areaServed": { "@type": "City", "name": "Саратов" }
+}
+</script>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
