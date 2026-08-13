@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Значок «Назук» — для тех, кто из Саратова</title>
+<meta name="description" content="Значок, по которому саратовцы узнают друг друга. Наша история и мы сами — с контактами.">
+<link rel="icon" href="assets/nazuk.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Значок «Назук» — для тех, кто из Саратова">
+<meta property="og:description" content="Значок, по которому саратовцы узнают друг друга.">
+<meta property="og:image" content="assets/nazuk.png">
+
+<!--
+  ЧТО ЗАМЕНИТЬ ПОЗЖЕ:
+  1. Секция «История» — текст-заготовка.
+  2. Секция «Авторы» — имена и ссылки помечены TODO.
+-->
+
+<style>
+  :root {
+    --paper:    #f8fcff;
+    --sky:      #cfe6f8;
+    --sky-soft: #e4f1fb;
+    --ink:      #17303f;
+    --ink-soft: #5a7b90;
+    --line:     #d3e4f0;
+    --volga:    #2f7bab;
+    --volga-lt: #8fc2e2;
+    --gold:     #c07a2e;
+    --ease:     cubic-bezier(.22, .61, .36, 1);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-weight: 400;
+    line-height: 1.14;
+    margin: 0 0 .4em;
+    letter-spacing: -.015em;
+  }
+
+  a { color: var(--volga); }
+
+  .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+
+  .label {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    font-size: .67rem;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+  .label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+  .label b { color: var(--volga); font-weight: 500; }
+
+  /* ---------------- герой ---------------- */
+  .hero {
+    position: relative;
+    padding: clamp(2.5rem, 6vw, 4rem) 0 0;
+    background: linear-gradient(180deg, var(--sky) 0%, var(--sky-soft) 58%, #eff8ff 100%);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .hero__grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    padding-bottom: clamp(7rem, 16vw, 11rem);
+  }
+  .kicker {
+    display: inline-block;
+    font-size: .66rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--volga);
+    border: 1px solid var(--volga-lt);
+    border-radius: 999px;
+    padding: .38rem 1rem;
+    margin-bottom: 1.2rem;
+    background: rgba(255, 255, 255, .65);
+  }
+  .hero h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); margin-bottom: .35em; }
+  .hero h1 em { display: block; font-style: normal; color: var(--volga); }
+  .hero .lead { max-width: 40ch; margin: 0; color: var(--ink-soft); }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: .68rem 1.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: .85rem;
+    letter-spacing: .05em;
+    border: 1px solid transparent;
+    transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
+  }
+  .btn--primary { background: var(--volga); color: #fff; box-shadow: 0 16px 34px -20px rgba(30,44,56,.7); }
+  .btn--primary:hover { transform: translateY(-2px); background: #26607f; }
+  .btn--ghost { border-color: var(--line); color: var(--ink); background: rgba(255,255,255,.6); }
+  .btn--ghost:hover { transform: translateY(-2px); border-color: var(--volga-lt); }
+
+  .pin-wrap { position: relative; display: grid; place-items: center; }
+  .pin {
+    width: min(320px, 88%);
+    height: auto;
+    filter: drop-shadow(0 26px 30px rgba(30, 44, 56, .28));
+    animation: float 8s ease-in-out infinite;
+  }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+  /* мост — фоновая лента внизу героя */
+  .bridge {
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    width: 100%;
+    height: clamp(110px, 15vw, 180px);
+    display: block;
+    z-index: 1;
+    pointer-events: none;
+  }
+  @media (max-width: 780px) {
+    .hero__grid { grid-template-columns: 1fr; text-align: center; }
+    .hero .lead { margin-inline: auto; }
+    .hero__cta { justify-content: center; }
+    .pin-wrap { order: -1; margin-bottom: 1rem; }
+    .pin { width: min(240px, 70%); }
+  }
+
+  /* ---------------- история ---------------- */
+  .story { padding: clamp(2.6rem, 6vw, 4rem) 0; }
+  .story__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.4rem, 4vw, 3rem);
+    align-items: start;
+  }
+  @media (max-width: 780px) { .story__grid { grid-template-columns: 1fr; } }
+  .story h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); max-width: 16ch; }
+  .story p { color: var(--ink-soft); margin: 0 0 .9em; font-size: .97rem; }
+  .story p:last-child { margin-bottom: 0; }
+  .story strong { color: var(--ink); font-weight: 500; }
+  .pull {
+    margin: 0;
+    padding: .2rem 0 .2rem 1.2rem;
+    border-left: 2px solid var(--gold);
+    font-family: "Iowan Old Style", Georgia, serif;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    line-height: 1.45;
+  }
+
+  /* ---------------- авторы ---------------- */
+  .authors {
+    background: linear-gradient(180deg, var(--sky-soft), #f4fafe);
+    border-top: 1px solid var(--line);
+    padding: clamp(2.6rem, 6vw, 4rem) 0;
+  }
+  .authors h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin-bottom: .2em; }
+  .authors .intro { color: var(--ink-soft); max-width: 52ch; margin: 0; font-size: .95rem; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1.8rem;
+  }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 1.8rem 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: .3rem;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 44px -26px rgba(23, 48, 63, .45);
+    border-color: var(--volga-lt);
+  }
+  .card__avatar {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    margin-bottom: .7rem;
+    background: linear-gradient(150deg, var(--volga-lt), var(--volga));
+    color: #fff;
+    font-family: "Iowan Old Style", Georgia, serif;
+    font-size: 1.7rem;
+    box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--line);
+  }
+  .card__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card--gold .card__avatar { background: linear-gradient(150deg, #e8bd7e, var(--gold)); }
+  .card__role { font-size: .63rem; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-soft); margin: 0; }
+  .card h3 { margin: 0; font-size: 1.15rem; }
+  .card .bio { margin: 0; color: var(--ink-soft); font-size: .87rem; }
+  .card--gold h3 { color: var(--gold); }
+
+  .links { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-top: 1rem; }
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .78rem;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: .3rem .75rem;
+    transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+  }
+  .links a:hover { background: var(--volga); border-color: var(--volga); color: #fff; }
+  .links svg { width: 13px; height: 13px; }
+
+  /* ---------------- футер ---------------- */
+  footer {
+    padding: 1.6rem 0;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: .7rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .pin { animation: none; }
+    .card, .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- ================= ГЕРОЙ ================= -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <span class="kicker">Саратов · для своих</span>
+        <h1>Значок «Назук»<em>Для тех, кто из Саратова</em></h1>
+        <p class="lead">
+          Мы сделали значок, по которому саратовцы узнают друг друга.
+          Носи его — и однажды в чужом городе кто-то улыбнётся тебе
+          как старому знакомому.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#story">Наша история</a>
+          <a class="btn btn--ghost" href="#authors">Кто мы</a>
+        </div>
+      </div>
+
+      <div class="pin-wrap">
+        <img class="pin" src="assets/nazuk.png" alt="Значок «Назук»: два кусочка выпечки" width="1254" height="1254">
+      </div>
+    </div>
+
+    <svg class="bridge" viewBox="0 0 1600 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#000"/>
+          <stop offset="10%"  stop-color="#fff"/>
+          <stop offset="90%"  stop-color="#fff"/>
+          <stop offset="100%" stop-color="#000"/>
+        </linearGradient>
+        <mask id="edges"><rect width="1600" height="200" fill="url(#fade)"/></mask>
+      </defs>
+
+      <g mask="url(#edges)">
+        <!-- Волга -->
+        <rect x="0" y="150" width="1600" height="50" fill="#cbe3f5"/>
+
+        <!-- пролётные арки под полотном -->
+        <g fill="none" stroke="#7fb6db" stroke-width="3" stroke-linecap="round">
+          <path d="M100 150Q220 66 340 150"/>
+          <path d="M340 150Q460 30 580 150"/>
+          <path d="M580 150Q700 -2 820 150"/>
+          <path d="M820 150Q940 -2 1060 150"/>
+          <path d="M1060 150Q1180 30 1300 150"/>
+          <path d="M1300 150Q1420 66 1540 150"/>
+        </g>
+
+        <!-- опоры -->
+        <g stroke="#5a9bc4" stroke-width="6" stroke-linecap="round">
+          <path d="M100 152v-30M340 152v-30M580 152v-30M820 152v-30M1060 152v-30M1300 152v-30M1540 152v-30"/>
+        </g>
+        <g stroke="#8fc2e2" stroke-width="4" stroke-linecap="round">
+          <path d="M20 152v-32M1580 152v-32"/>
+        </g>
+
+        <!-- полотно с «горбами» -->
+        <path d="M0 120H100Q220 76 340 120Q460 40 580 120Q700 8 820 120Q940 8 1060 120Q1180 40 1300 120Q1420 76 1540 120H1600"
+              fill="none" stroke="#2f7bab" stroke-width="4.5" stroke-linejoin="round"/>
+        <path d="M0 112H100Q220 68 340 112Q460 32 580 112Q700 0 820 112Q940 0 1060 112Q1180 32 1300 112Q1420 68 1540 112H1600"
+              fill="none" stroke="#9fcbe6" stroke-width="1.8" opacity=".85"/>
+
+        <!-- отражение в воде -->
+        <g stroke="#a6d0ec" stroke-width="2" stroke-linecap="round" opacity=".7">
+          <path d="M60 164h80M220 172h120M420 164h140M660 176h180M900 164h140M1120 172h120M1340 164h150"/>
+          <path d="M100 154v14M340 154v18M580 154v22M820 154v22M1060 154v18M1300 154v14" opacity=".5"/>
+        </g>
+      </g>
+    </svg>
+  </section>
+
+  <!-- ================= ИСТОРИЯ ================= -->
+  <section id="story" class="story">
+    <div class="wrap">
+      <p class="label"><b>01</b> История</p>
+
+      <div class="story__grid">
+        <div>
+          <h2>Захотелось, чтобы своих было видно</h2>
+          <figure class="pull">
+            «Саратов? Да ладно! Ты с какого района?»
+          </figure>
+        </div>
+
+        <!-- TODO: заменить текст на настоящую историю -->
+        <div>
+          <p>
+            Наверное, это знакомо каждому: видишь мост через Волгу на чужой
+            фотографии — и сразу становится тепло, хочется написать человеку,
+            даже если вы совсем незнакомы.
+          </p>
+          <p>
+            Так и появился <strong>значок «Назук»</strong>. Маленький кусочек
+            выпечки на куртке или рюкзаке — знак, что ты свой. Увидели такой же
+            у кого-то? Подходите и знакомьтесь, повод уже есть.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= АВТОРЫ ================= -->
+  <section id="authors" class="authors">
+    <div class="wrap">
+      <p class="label"><b>02</b> Авторы</p>
+      <h2>Нас трое</h2>
+      <p class="intro">Придумывали и рисовали вместе. Пишите нам — всегда рады своим.</p>
+
+      <div class="cards">
+
+        <!-- TODO: имя и ссылки -->
+        <article class="card">
+          <!-- фото: <img src="assets/author-1.jpg" alt="Имя Фамилия"> внутрь .card__avatar -->
+          <div class="card__avatar">И</div>
+          <p class="card__role">Дизайн</p>
+          <h3>Имя Фамилия</h3>
+          <p class="bio">Придумал, как значок будет выглядеть.</p>
+          <div class="links">
+            <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a href="https://t.me/USERNAME" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+              Telegram
+            </a>
+          </div>
+        </article>
+
+        <!-- TODO: имя и ссылки -->
+        <article class="card">
+          <!-- фото: <img src="assets/author-2.jpg" alt="Имя Фамилия"> внутрь .card__avatar -->
+          <div class="card__avatar">И</div>
+          <p class="card__role">Идея</p>
+          <h3>Имя Фамилия</h3>
+          <p class="bio">С этого человека всё и началось.</p>
+          <div class="links">
+            <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a href="https://t.me/USERNAME" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+              Telegram
+            </a>
+          </div>
+        </article>
+
+        <!-- TODO: имя и ссылки -->
+        <article class="card">
+          <!-- фото: <img src="assets/author-2.jpg" alt="Имя Фамилия"> внутрь .card__avatar -->
+          <div class="card__avatar">И</div>
+          <p class="card__role">Идея</p>
+          <h3>Имя Фамилия</h3>
+          <p class="bio">С этого человека всё и началось.</p>
+          <div class="links">
+            <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a href="https://t.me/USERNAME" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+              Telegram
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Сделано в Саратове с любовью · <span id="year">2026</span></footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>
