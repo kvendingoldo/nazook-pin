@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Значок «Назук» — знак для саратовцев по всему миру</title>
-<meta name="description" content="Эмалевый значок в виде назука: по нему саратовцы узнают своих в любом городе. История значка и его авторы — с контактами для связи.">
+<title>Значок «Назук» — саратовский пароль</title>
+<meta name="description" content="Эмалевый значок в виде назука: для большинства — просто выпечка, а саратовцы узнают своих с одного взгляда. История значка и его авторы.">
 <link rel="canonical" href="https://kvendingoldo.github.io/nazook-pin/">
 <link rel="icon" href="assets/nazuk.png" type="image/png">
-<meta name="theme-color" content="#cfe6f8">
+<meta name="theme-color" content="#e8f2fa">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Значок «Назук»">
 <meta property="og:url" content="https://kvendingoldo.github.io/nazook-pin/">
-<meta property="og:title" content="Значок «Назук» — знак для саратовцев по всему миру">
-<meta property="og:description" content="Носишь значок — и свои узнают тебя в любом городе. История значка и его авторы.">
+<meta property="og:title" content="Значок «Назук» — саратовский пароль">
+<meta property="og:description" content="Для большинства — просто выпечка, а саратовцы узнают своих с одного взгляда.">
 <meta property="og:image" content="https://kvendingoldo.github.io/nazook-pin/assets/nazuk.png">
 <meta property="og:image:width" content="1254">
 <meta property="og:image:height" content="1254">
@@ -24,252 +24,426 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-<!--
-  ЧТО ЗАМЕНИТЬ ПОЗЖЕ:
-  1. Секция «История» — текст-заготовка.
-  2. Секция «Авторы» — имена и ссылки помечены TODO.
--->
-
 <style>
+  /* ============================================================
+     DESIGN TOKENS
+     ============================================================ */
   :root {
-    --paper:    #f8fcff;
-    --sky:      #cfe6f8;
-    --sky-soft: #e4f1fb;
-    --ink:      #17303f;
-    --ink-soft: #476a80;
-    --line:     #d3e4f0;
-    --volga:    #2f7bab;
-    --volga-lt: #8fc2e2;
-    --gold:     #c07a2e;
-    --ease:     cubic-bezier(.22, .61, .36, 1);
-    --font:     "Nunito", ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    /* --- surfaces & ink: три поверхности, не больше --- */
+    --surface-page:   #f7fbff;
+    --surface-raised: #ffffff;
+    --surface-sunken: #e8f2fa;
+
+    --text-primary:   #10293a;
+    --text-secondary: #3d6076;
+    --text-inverse:   #ffffff;
+
+    --border:         #d5e5f1;
+    --border-strong:  #b3d3e8;
+
+    /* --- accents: один интерактивный синий + два оттенка --- */
+    --accent:         #1f6690;   /* интерактив, тексты на светлом  */
+    --accent-hover:   #17506f;
+    --accent-soft:    #8fc2e2;   /* линии, иллюстрация            */
+    --accent-tint:    #d9ebf8;   /* заливки, чипы                 */
+    --accent-quote:   #a8681d;   /* тёплый акцент цитаты (назук)  */
+
+    /* --- иллюстрация моста (производные от палитры) --- */
+    --bridge-water:   #cfe4f4;
+    --bridge-arch:    #7fb6db;
+    --bridge-pier:    #4f92bd;
+
+    --shadow-rgb:     16 41 58;
+
+    /* --- spacing scale (4px база) --- */
+    --space-1: .25rem;
+    --space-2: .5rem;
+    --space-3: .75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+
+    /* --- type scale --- */
+    --text-2xs:  .75rem;     /* 12 — надзаголовки, футер */
+    --text-xs:   .875rem;    /* 14 — кнопки, чипы        */
+    --text-sm:   .9375rem;   /* 15 — подписи             */
+    --text-base: 1.0625rem;  /* 17 — основной текст      */
+    --text-md:   1.1875rem;  /* 19 — лид                 */
+    --text-lg:   1.375rem;   /* 22 — цитата              */
+    --text-xl:   clamp(1.5rem, 3vw, 2rem);       /* h2  */
+    --text-2xl:  clamp(2.1rem, 4.4vw, 3rem);     /* h1  */
+
+    /* --- radii --- */
+    --radius-sm:   .5rem;
+    --radius-md:   .875rem;
+    --radius-lg:   1.25rem;
+    --radius-pill: 999px;
+
+    /* --- elevation --- */
+    --shadow-sm: 0 1px 2px rgb(var(--shadow-rgb) / .06),
+                 0 8px 20px -14px rgb(var(--shadow-rgb) / .28);
+    --shadow-md: 0 2px 4px rgb(var(--shadow-rgb) / .05),
+                 0 20px 40px -24px rgb(var(--shadow-rgb) / .38);
+
+    /* --- layout --- */
+    --container: 68rem;                        /* 1088px */
+    --gutter:    clamp(1.25rem, 5vw, 2rem);
+    --section-y: clamp(3.5rem, 8vw, 5.5rem);
+
+    /* --- motion --- */
+    --ease:      cubic-bezier(.22, .61, .36, 1);
+    --duration:  .2s;
+
+    --font: "Nunito", ui-rounded, "SF Pro Rounded", -apple-system,
+            BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
-  * { box-sizing: border-box; }
+  /* ============================================================
+     BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; }
+
   html { scroll-behavior: smooth; }
 
   body {
     margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font: 400 16.5px/1.65 var(--font);
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: var(--text-base);
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
   }
 
   h1, h2, h3 {
-    font-family: var(--font);
+    margin: 0;
     font-weight: 700;
-    line-height: 1.2;
-    margin: 0 0 .4em;
+    line-height: 1.15;
     letter-spacing: -.02em;
     text-wrap: balance;
   }
 
-  p { text-wrap: pretty; }
+  p { margin: 0; text-wrap: pretty; }
 
-  a { color: var(--volga); }
+  img { display: block; max-width: 100%; height: auto; }
+
+  a { color: var(--accent); }
 
   :focus-visible {
-    outline: 2px solid var(--volga);
-    outline-offset: 3px;
-    border-radius: 4px;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
-  .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+  /* ============================================================
+     LAYOUT PRIMITIVES
+     ============================================================ */
+  .container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
 
-  .label {
+  .section { padding-block: var(--section-y); }
+  .section--sunken {
+    background: var(--surface-sunken);
+    border-block-start: 1px solid var(--border);
+  }
+
+  .stack > * + * { margin-block-start: var(--space-4); }
+
+  /* ============================================================
+     COMPONENTS
+     ============================================================ */
+
+  /* Надзаголовок секции */
+  .eyebrow {
     display: flex;
     align-items: center;
-    gap: .8rem;
-    font-size: .67rem;
-    letter-spacing: .28em;
+    gap: var(--space-3);
+    margin-block-end: var(--space-4);
+    font-size: var(--text-2xs);
+    font-weight: 600;
+    letter-spacing: .16em;
     text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0 0 1rem;
+    color: var(--text-secondary);
   }
-  .label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+  .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
 
-  /* ---------------- герой ---------------- */
+  /* Бейдж первого экрана */
+  .badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-pill);
+    background: var(--accent-tint);
+    color: var(--accent-hover);
+    font-size: var(--text-2xs);
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  /* Кнопки */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;                    /* 44px — touch target */
+    padding-inline: var(--space-5);
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    font-family: inherit;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background var(--duration) var(--ease),
+                border-color var(--duration) var(--ease),
+                color var(--duration) var(--ease),
+                box-shadow var(--duration) var(--ease);
+  }
+  .btn--primary {
+    background: var(--accent);
+    color: var(--text-inverse);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn--primary:hover { background: var(--accent-hover); box-shadow: var(--shadow-md); }
+  .btn--primary:active { background: var(--accent-hover); box-shadow: none; }
+
+  .btn--secondary {
+    background: var(--surface-raised);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+  .btn--secondary:hover { border-color: var(--border-strong); background: var(--accent-tint); }
+  .btn--secondary:active { background: var(--accent-tint); }
+
+  /* Контактный чип */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 2.25rem;
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--duration) var(--ease),
+                border-color var(--duration) var(--ease),
+                color var(--duration) var(--ease);
+  }
+  .chip:hover { background: var(--accent); border-color: var(--accent); color: var(--text-inverse); }
+  .chip svg { width: 1em; height: 1em; flex: none; }
+
+  /* Карточка автора */
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-6) var(--space-5);
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: border-color var(--duration) var(--ease),
+                box-shadow var(--duration) var(--ease);
+  }
+  .card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+
+  .avatar {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--accent-tint);
+    box-shadow: 0 0 0 1px var(--border);
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .card__name { font-size: var(--text-base); }
+
+  .card__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-block-start: var(--space-1);
+  }
+
+  /* Цитата */
+  .quote {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+    border-inline-start: 3px solid var(--accent-quote);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--text-primary);
+  }
+
+  /* ============================================================
+     SECTIONS
+     ============================================================ */
+
+  /* --- Первый экран --- */
   .hero {
     position: relative;
-    padding: clamp(2.5rem, 6vw, 4rem) 0 0;
-    background: linear-gradient(180deg, var(--sky) 0%, var(--sky-soft) 58%, #eff8ff 100%);
-    border-bottom: 1px solid var(--line);
+    padding-block-start: var(--section-y);
+    background: linear-gradient(180deg, var(--surface-sunken), var(--surface-page) 78%);
+    border-block-end: 1px solid var(--border);
     overflow: hidden;
   }
   .hero__grid {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     display: grid;
-    grid-template-columns: 1.15fr .85fr;
-    gap: clamp(1.5rem, 4vw, 3rem);
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     align-items: center;
-    padding-bottom: clamp(7rem, 16vw, 11rem);
+    gap: var(--space-7);
+    padding-block-end: clamp(6rem, 17vw, 11rem);
   }
-  .kicker {
-    display: inline-block;
-    font-size: .66rem;
-    letter-spacing: .3em;
-    text-transform: uppercase;
-    color: var(--volga);
-    border: 1px solid var(--volga-lt);
-    border-radius: 999px;
-    padding: .38rem 1rem;
-    margin-bottom: 1.2rem;
-    background: rgba(255, 255, 255, .65);
+  .hero__title {
+    margin-block: var(--space-4) var(--space-4);
+    font-size: var(--text-2xl);
   }
-  .hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.15rem); margin-bottom: .35em; }
-  .hero h1 em { display: block; font-style: normal; color: var(--volga); }
-  .hero .lead { max-width: 40ch; margin: 0; color: var(--ink-soft); }
-  .hero__cta { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
+  .hero__tagline {
+    display: block;
+    margin-block-start: var(--space-2);
+    font-size: .55em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -.01em;
+  }
+  .hero__lead {
+    max-width: 38ch;
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-block-start: var(--space-6);
+  }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: .68rem 1.4rem;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: .85rem;
-    letter-spacing: .05em;
-    border: 1px solid transparent;
-    transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
-  }
-  .btn--primary { background: var(--volga); color: #fff; box-shadow: 0 16px 34px -20px rgba(30,44,56,.7); }
-  .btn--primary:hover { transform: translateY(-2px); background: #26607f; }
-  .btn--ghost { border-color: var(--line); color: var(--ink); background: rgba(255,255,255,.6); }
-  .btn--ghost:hover { transform: translateY(-2px); border-color: var(--volga-lt); }
-
-  .pin-wrap { position: relative; display: grid; place-items: center; }
-  .pin {
-    width: min(320px, 88%);
-    height: auto;
-    filter: drop-shadow(0 26px 30px rgba(30, 44, 56, .28));
+  .hero__pin {
+    width: min(20rem, 100%);
+    margin-inline: auto;
+    filter: drop-shadow(0 1.5rem 1.75rem rgb(var(--shadow-rgb) / .22));
     animation: float 8s ease-in-out infinite;
   }
-  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  @keyframes float {
+    from, to { transform: translateY(0); }
+    50%      { transform: translateY(-.75rem); }
+  }
 
-  /* мост — фоновая лента внизу героя */
-  .bridge {
+  /* Мост — иллюстрация, а не декор: держит нижнюю кромку экрана */
+  .hero__bridge {
     position: absolute;
-    left: 0; right: 0; bottom: -1px;
+    inset-inline: 0;
+    inset-block-end: -1px;
     width: 100%;
-    height: clamp(110px, 15vw, 180px);
-    display: block;
-    z-index: 1;
+    height: clamp(4.5rem, 14vw, 11rem);
     pointer-events: none;
   }
-  @media (max-width: 780px) {
-    .hero__grid { grid-template-columns: 1fr; text-align: center; }
-    .hero .lead { margin-inline: auto; }
-    .hero__cta { justify-content: center; }
-    .pin-wrap { order: -1; margin-bottom: 1rem; }
-    .pin { width: min(240px, 70%); }
-  }
 
-  /* ---------------- история ---------------- */
-  .story { padding: clamp(2.6rem, 6vw, 4rem) 0; }
+  /* --- История --- */
   .story__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(1.4rem, 4vw, 3rem);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-5) var(--space-7);
     align-items: center;
   }
-  @media (max-width: 780px) { .story__grid { grid-template-columns: 1fr; } }
-  .story h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); max-width: 16ch; }
-  .story p { color: var(--ink-soft); margin: 0 0 .9em; }
-  .story p:last-child { margin-bottom: 0; }
-  .story strong { color: var(--ink); font-weight: 500; }
-  .pull {
-    margin: 0;
-    padding: .2rem 0 .2rem 1.2rem;
-    border-left: 3px solid var(--gold);
-    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-    font-weight: 600;
-    line-height: 1.5;
-    color: var(--ink);
-  }
+  .story__heading { font-size: var(--text-xl); max-width: 15ch; }
+  .story__quote { margin-block-start: var(--space-5); }
+  .story__body { color: var(--text-secondary); }
+  .story__body strong { color: var(--text-primary); font-weight: 700; }
 
-  /* ---------------- авторы ---------------- */
-  .authors {
-    background: linear-gradient(180deg, var(--sky-soft), #f4fafe);
-    border-top: 1px solid var(--line);
-    padding: clamp(2.6rem, 6vw, 4rem) 0;
-  }
-  .authors h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin-bottom: .2em; }
-  .authors .intro { color: var(--ink-soft); max-width: 60ch; margin: 0; text-wrap: balance; }
-
-  .cards {
+  /* --- Авторы --- */
+  .authors__heading { font-size: var(--text-xl); }
+  .authors__list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-    margin-top: 1.8rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-block-start: var(--space-6);
+    padding: 0;
+    list-style: none;
   }
-  .card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    padding: 1.8rem 1.4rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+  /* --- Футер --- */
+  .footer {
+    padding-block: var(--space-5);
+    border-block-start: 1px solid var(--border);
     text-align: center;
-    gap: .3rem;
-    transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 22px 44px -26px rgba(23, 48, 63, .45);
-    border-color: var(--volga-lt);
-  }
-  .card__avatar {
-    width: 124px;
-    height: 124px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    margin-bottom: .9rem;
-    background: linear-gradient(150deg, var(--volga-lt), var(--volga));
-    color: #fff;
-    font-size: 2.6rem;
+    font-size: var(--text-2xs);
     font-weight: 600;
-    box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px var(--line);
-  }
-  .card__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .card h3 { margin: 0; font-size: 1.15rem; }
-
-  .links { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-top: 1rem; }
-  .links a {
-    display: inline-flex;
-    align-items: center;
-    gap: .4rem;
-    font-size: .78rem;
-    text-decoration: none;
-    color: var(--ink);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: .3rem .75rem;
-    transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
-  }
-  .links a:hover { background: var(--volga); border-color: var(--volga); color: #fff; }
-  .links svg { width: 13px; height: 13px; }
-
-  /* ---------------- футер ---------------- */
-  footer {
-    padding: 1.6rem 0;
-    text-align: center;
-    color: var(--ink-soft);
-    font-size: .7rem;
-    letter-spacing: .14em;
+    letter-spacing: .12em;
     text-transform: uppercase;
-    border-top: 1px solid var(--line);
+    color: var(--text-secondary);
+  }
+
+  /* ============================================================
+     RESPONSIVE — композиция, а не сжатие
+     ============================================================ */
+
+  /* Планшет: значок уступает место тексту, история в одну колонку */
+  @media (max-width: 60rem) {
+    .hero__grid { gap: var(--space-5); }
+    .hero__pin  { width: min(15rem, 100%); }
+    .story__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+    .story__heading { max-width: 24ch; }
+    .story__quote { margin-block-start: var(--space-4); }
+  }
+
+  /* Мобильный: значок над заголовком, действия на всю ширину */
+  @media (max-width: 44rem) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: center;
+      text-align: center;
+      padding-block-end: clamp(4rem, 22vw, 6rem);
+    }
+    .hero__pin-wrap { order: -1; }
+    .hero__pin { width: min(11rem, 60%); }
+    .hero__lead { margin-inline: auto; }
+    .hero__actions { width: 100%; flex-direction: column; align-items: stretch; }
+    .hero__actions .btn { width: 100%; }
+    .authors__list { grid-template-columns: minmax(0, 1fr); max-width: 22rem; }
+    .chip { padding-inline: var(--space-2); }
+    .card {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-areas:
+        "avatar name"
+        "avatar links";
+      align-items: center;
+      column-gap: var(--space-4);
+      row-gap: var(--space-2);
+      padding: var(--space-4);
+      text-align: start;
+    }
+    .avatar { grid-area: avatar; width: 4.5rem; height: 4.5rem; }
+    .card__name { grid-area: name; }
+    .card__links { grid-area: links; justify-content: flex-start; margin-block-start: 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .pin { animation: none; }
-    .card, .btn { transition: none; }
+    .hero__pin { animation: none; }
+    *, *::before, *::after { transition-duration: .01ms !important; }
   }
 </style>
 </head>
@@ -277,47 +451,52 @@
 
 <main>
 
-  <!-- ================= ГЕРОЙ ================= -->
-  <section class="hero">
-    <div class="wrap hero__grid">
+  <!-- ================= ПЕРВЫЙ ЭКРАН ================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__grid">
       <div>
-        <span class="kicker">Саратов · значок для своих</span>
-        <h1>Значок «Назук»<em>Свой своего узнает</em></h1>
-        <p class="lead">
-          Эмалевый значок в виде назука — той самой выпечки. Носишь его —
-          и в любом городе мира кто-то из саратовцев улыбнётся тебе
-          как старому знакомому.
+        <p><span class="badge">Саратов · значок для своих</span></p>
+
+        <h1 class="hero__title" id="hero-title">
+          Значок «Назук»
+          <span class="hero__tagline">Саратовский пароль</span>
+        </h1>
+
+        <p class="hero__lead">
+          Эмалевый значок в виде назука. Для большинства это просто выпечка,
+          а саратовцы узнают своих с одного взгляда.
         </p>
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="#story">Наша история</a>
-          <a class="btn btn--ghost" href="#authors">Кто мы</a>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#story">История значка</a>
+          <a class="btn btn--secondary" href="#authors">Авторы</a>
         </div>
       </div>
 
-      <div class="pin-wrap">
-        <img class="pin" src="assets/nazuk.png" width="1254" height="1254"
+      <div class="hero__pin-wrap">
+        <img class="hero__pin" src="assets/nazuk.png" width="1254" height="1254"
              fetchpriority="high" decoding="async"
              alt="Эмалевый значок «Назук» — два назука с золотистой корочкой">
       </div>
     </div>
 
-    <svg class="bridge" viewBox="0 0 1600 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <svg class="hero__bridge" viewBox="0 0 1600 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id="bridge-fade" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%"   stop-color="#000"/>
           <stop offset="10%"  stop-color="#fff"/>
           <stop offset="90%"  stop-color="#fff"/>
           <stop offset="100%" stop-color="#000"/>
         </linearGradient>
-        <mask id="edges"><rect width="1600" height="200" fill="url(#fade)"/></mask>
+        <mask id="bridge-edges"><rect width="1600" height="200" fill="url(#bridge-fade)"/></mask>
       </defs>
 
-      <g mask="url(#edges)">
+      <g mask="url(#bridge-edges)">
         <!-- Волга -->
-        <rect x="0" y="150" width="1600" height="50" fill="#cbe3f5"/>
+        <rect x="0" y="150" width="1600" height="50" fill="var(--bridge-water)"/>
 
-        <!-- пролётные арки под полотном -->
-        <g fill="none" stroke="#7fb6db" stroke-width="3" stroke-linecap="round">
+        <!-- пролётные арки -->
+        <g fill="none" stroke="var(--bridge-arch)" stroke-width="3" stroke-linecap="round">
           <path d="M100 150Q220 66 340 150"/>
           <path d="M340 150Q460 30 580 150"/>
           <path d="M580 150Q700 -2 820 150"/>
@@ -327,21 +506,21 @@
         </g>
 
         <!-- опоры -->
-        <g stroke="#5a9bc4" stroke-width="6" stroke-linecap="round">
+        <g stroke="var(--bridge-pier)" stroke-width="6" stroke-linecap="round">
           <path d="M100 152v-30M340 152v-30M580 152v-30M820 152v-30M1060 152v-30M1300 152v-30M1540 152v-30"/>
         </g>
-        <g stroke="#8fc2e2" stroke-width="4" stroke-linecap="round">
+        <g stroke="var(--accent-soft)" stroke-width="4" stroke-linecap="round">
           <path d="M20 152v-32M1580 152v-32"/>
         </g>
 
         <!-- полотно с «горбами» -->
         <path d="M0 120H100Q220 76 340 120Q460 40 580 120Q700 8 820 120Q940 8 1060 120Q1180 40 1300 120Q1420 76 1540 120H1600"
-              fill="none" stroke="#2f7bab" stroke-width="4.5" stroke-linejoin="round"/>
+              fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linejoin="round"/>
         <path d="M0 112H100Q220 68 340 112Q460 32 580 112Q700 0 820 112Q940 0 1060 112Q1180 32 1300 112Q1420 68 1540 112H1600"
-              fill="none" stroke="#9fcbe6" stroke-width="1.8" opacity=".85"/>
+              fill="none" stroke="var(--accent-soft)" stroke-width="1.8"/>
 
-        <!-- отражение в воде -->
-        <g stroke="#a6d0ec" stroke-width="2" stroke-linecap="round" opacity=".7">
+        <!-- отражение -->
+        <g stroke="var(--accent-soft)" stroke-width="2" stroke-linecap="round" opacity=".7">
           <path d="M60 164h80M220 172h120M420 164h140M660 176h180M900 164h140M1120 172h120M1340 164h150"/>
           <path d="M100 154v14M340 154v18M580 154v22M820 154v22M1060 154v18M1300 154v14" opacity=".5"/>
         </g>
@@ -350,29 +529,45 @@
   </section>
 
   <!-- ================= ИСТОРИЯ ================= -->
-  <section id="story" class="story">
-    <div class="wrap">
-      <p class="label">История</p>
+  <section class="section" id="story" aria-labelledby="story-title">
+    <div class="container">
+      <p class="eyebrow">История</p>
 
       <div class="story__grid">
         <div>
-          <h2>Захотелось, чтобы своих было видно</h2>
-          <figure class="pull">
-            «Саратов? Да ладно! Ты с какого района?»
-          </figure>
+          <h2 class="story__heading" id="story-title">Всё началось с шутки в баре</h2>
+          <blockquote class="quote story__quote">
+            <p>Так у саратовского пароля появилась форма, которую можно носить с собой.</p>
+          </blockquote>
         </div>
 
-        <!-- TODO: заменить текст на настоящую историю -->
-        <div>
+        <div class="story__body stack">
           <p>
-            Наверное, это знакомо каждому: видишь мост через Волгу на чужой
-            фотографии — и сразу становится тепло, хочется написать человеку,
-            даже если вы совсем незнакомы.
+            Летом 2025 года мы сидели в баре в Тбилиси и пытались придумать
+            что-то, что знает каждый саратовец — и что совсем не очевидно
+            для остальных. Вокруг была обычная эмигрантская жизнь: люди
+            из разных городов и стран, разбросанные между Грузией, Сербией,
+            Арменией, Израилем. Довольно быстро мы пришли к назуку.
           </p>
           <p>
-            Так и появился <strong>эмалевый значок «Назук»</strong>. Тёплая
-            выпечка на куртке или рюкзаке — знак, что ты свой. Увидели такой же
-            у кого-то? Подходите и знакомьтесь, повод уже есть.
+            Оказалось, это почти идеальный саратовский пароль. Для большинства
+            слово «назук» не значит вообще ничего. Зато саратовцы — в Тбилиси,
+            Лондоне, Париже, Сан-Франциско — узнают его моментально.
+            А вместе с ним узнают и своих.
+          </p>
+          <p>
+            Была только одна проблема: сам назук с собой особо не повозишь.
+            Всё-таки выпечка, дорогу через страны и континенты она переносит
+            хуже людей. Так мы и разогнали идею: <strong>надо делать значок</strong>.
+          </p>
+          <p>
+            Тогда это казалось скорее удачным пранком, чем проектом. Но пранк
+            быстро вышел из-под контроля: первые эскизы, новые версии дизайна,
+            поиски мастеров, эксперименты с производством, логистика и ещё
+            десяток вещей, о которых мы в тот вечер не подозревали.
+          </p>
+          <p>
+            И вот спустя год, в конце лета 2026-го, мы наконец его выпускаем.
           </p>
         </div>
       </div>
@@ -380,82 +575,82 @@
   </section>
 
   <!-- ================= АВТОРЫ ================= -->
-  <section id="authors" class="authors">
-    <div class="wrap">
-      <p class="label">Авторы</p>
-      <h2>Нас трое</h2>
-      <p class="intro">
-        Придумали, нарисовали, договорились с производством, получили тираж,
-        упаковали и развезли значки своим. Всё сами, без чужих рук.
-        Пишите нам — будем рады.
-      </p>
+  <section class="section section--sunken" id="authors" aria-labelledby="authors-title">
+    <div class="container">
+      <p class="eyebrow">Авторы</p>
+      <h2 class="authors__heading" id="authors-title">Нас трое</h2>
 
-      <div class="cards">
+      <ul class="authors__list">
 
-        <!-- TODO: имя и ссылки -->
-        <article class="card">
-          <div class="card__avatar">
-            <img src="assets/nastya.jpg" alt="Настя Меренцова — автор дизайна значка «Назук»"
-                 width="450" height="600" loading="lazy" style="object-position: 42% 32%">
+        <li class="card">
+          <div class="avatar">
+            <img src="assets/nastya.jpg" alt="" width="450" height="600"
+                 loading="lazy" style="object-position: 42% 32%">
           </div>
-          <h3>Настя Меренцова</h3>
-          <div class="links">
-            <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <h3 class="card__name">Настя Меренцова</h3>
+          <div class="card__links">
+            <a class="chip" href="https://www.instagram.com/a_mellnik/" target="_blank" rel="noopener"
+               aria-label="Instagram: Настя Меренцова">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
               Instagram
             </a>
-            <a href="https://t.me/USERNAME" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+            <a class="chip" href="https://t.me/a_mellnik" target="_blank" rel="noopener"
+               aria-label="Telegram: Настя Меренцова">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
               Telegram
             </a>
           </div>
-        </article>
+        </li>
 
-        <!-- TODO: ссылки -->
-        <article class="card">
-          <div class="card__avatar">
-            <img src="assets/sasha.jpg" alt="Александр Шаров — один из авторов идеи значка «Назук»"
-                 width="400" height="600" loading="lazy" style="object-position: 45% 18%">
+        <li class="card">
+          <div class="avatar">
+            <img src="assets/sasha.jpg" alt="" width="400" height="600"
+                 loading="lazy" style="object-position: 45% 18%">
           </div>
-          <h3>Александр Шаров</h3>
-          <div class="links">
-            <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <h3 class="card__name">Александр Шаров</h3>
+          <div class="card__links">
+            <a class="chip" href="https://www.instagram.com/kvendingoldo/" target="_blank" rel="noopener"
+               aria-label="Instagram: Александр Шаров">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
               Instagram
             </a>
-            <a href="https://t.me/USERNAME" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+            <a class="chip" href="https://t.me/kvendingoldo" target="_blank" rel="noopener"
+               aria-label="Telegram: Александр Шаров">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
               Telegram
             </a>
           </div>
-        </article>
+        </li>
 
-        <!-- TODO: ссылки -->
-        <article class="card">
-          <div class="card__avatar">
-            <img src="assets/sanya.jpg" alt="Александр Ермолаев — один из авторов идеи значка «Назук»"
-                 width="600" height="600" loading="lazy" style="object-position: 50% 42%">
+        <li class="card">
+          <div class="avatar">
+            <img src="assets/sanya.jpg" alt="" width="600" height="600"
+                 loading="lazy" style="object-position: 50% 42%">
           </div>
-          <h3>Александр Ермолаев</h3>
-          <div class="links">
-            <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <h3 class="card__name">Александр Ермолаев</h3>
+          <div class="card__links">
+            <a class="chip" href="https://www.instagram.com/ermolaxe/" target="_blank" rel="noopener"
+               aria-label="Instagram: Александр Ермолаев">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
               Instagram
             </a>
-            <a href="https://t.me/USERNAME" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+            <a class="chip" href="https://t.me/ermolaxe" target="_blank" rel="noopener"
+               aria-label="Telegram: Александр Ермолаев">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
               Telegram
             </a>
           </div>
-        </article>
+        </li>
 
-      </div>
+      </ul>
     </div>
   </section>
 
 </main>
 
-<footer>Сделано в Саратове с любовью · <span id="year">2026</span></footer>
+<footer class="footer">
+  <p>Родом из Саратова · <span id="year">2026</span></p>
+</footer>
 
 <script type="application/ld+json">
 {
