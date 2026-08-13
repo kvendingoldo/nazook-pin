@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kvendingoldo.github.io/nazook-pin/sitemap.xml
