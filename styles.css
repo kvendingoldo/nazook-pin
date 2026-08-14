@@ -48,7 +48,6 @@
     --text-base: 1.0625rem;  /* 17 — основной текст      */
     --text-md:   1.1875rem;  /* 19 — лид                 */
     --text-lg:   1.375rem;   /* 22 — крупный текст       */
-    --text-quote: clamp(1.5rem, 2.4vw, 1.75rem); /* 24–28 — цитата */
     --text-xl:   clamp(1.5rem, 3vw, 2rem);       /* h2  */
     --text-2xl:  clamp(2.1rem, 4.4vw, 3rem);     /* h1  */
 
@@ -273,8 +272,8 @@
   }
 
   .avatar {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 9.5rem;
+    height: 9.5rem;
     border-radius: 50%;
     overflow: hidden;
     background: var(--accent-tint);
@@ -306,14 +305,17 @@
     margin-block-start: var(--space-1);
   }
 
-  /* Врезка-слоган: не цитата, поэтому и в разметке это обычный абзац */
-  .quote {
-    margin: 0;
-    padding-inline-start: var(--space-4);
-    border-inline-start: 3px solid var(--accent-quote);
-    font-size: var(--text-quote);
-    font-weight: 600;
-    line-height: 1.35;
+  /* Закрывающая строка истории: точка в конце рассказа, а не врезка */
+  .story__closing {
+    max-width: 44ch;
+    margin: var(--space-7) auto 0;
+    padding-block-start: var(--space-6);
+    border-block-start: 1px solid var(--border);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    text-wrap: balance;
     color: var(--accent);
   }
 
@@ -404,11 +406,20 @@
   .story__body > p { break-inside: avoid; }
   .story__body strong { color: var(--text-primary); font-weight: 700; }
 
-  .story__quote {
-    margin-inline: calc((var(--container) - 100%) / -2);
-    margin-block-start: var(--space-6);
-    text-wrap: balance;
+
+  /* --- Как получить: заголовок и текст делят полосу, без пустого правого поля --- */
+  .get__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-5) var(--space-7);
+    align-items: baseline;
   }
+  .get__heading { font-size: var(--text-xl); max-width: 16ch; }
+  .get__text { color: var(--text-secondary); }
+
+  /* вторая секция той же полосы: без повторной линии сверху */
+  #get { padding-block-end: var(--space-6); }
+  .section--joined { border-block-start: 0; padding-block-start: 0; }
 
   /* --- Авторы --- */
   .authors__heading { font-size: var(--text-xl); }
@@ -444,6 +455,9 @@
   @media (max-width: 60rem) {
     /* одна колонка — но не во всю ширину: длина строки остаётся читаемой */
     .story__body { columns: 1; max-width: 62ch; }
+    .get__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+    .get__heading { max-width: 24ch; }
+    .get__text { max-width: 62ch; }
     .hero__grid { gap: var(--space-5); padding-block-end: clamp(8rem, 30vw, 15rem); }
     .hero__bridge { height: clamp(8rem, 26vw, 15rem); }
     .hero__pin  { width: min(15rem, 100%); }
@@ -478,7 +492,7 @@
       row-gap: var(--space-2);
       text-align: start;
     }
-    .avatar { grid-area: avatar; width: 4.75rem; height: 4.75rem; }
+    .avatar { grid-area: avatar; width: 5.5rem; height: 5.5rem; }
     .author__name { grid-area: name; }
     .author__links { grid-area: links; justify-content: flex-start; margin-block-start: 0; }
   }
