@@ -28,10 +28,8 @@
 
     /* --- мост: тёплый силуэт над голубой водой --- */
     --bridge-water:   var(--water);
-    --bridge-arch:    #c98f4e;
-    --bridge-pier:    #8a6034;
-    --bridge-truss:   #b98a55;
-    --lamp:           #e0912b;
+    --bridge-arch:    #d9a868;
+    --bridge-pier:    #b9834a;
 
     --shadow-rgb:     74 45 22;
 
@@ -334,7 +332,7 @@
     align-items: center;
     gap: var(--space-7);
     padding-block-start: var(--space-6);
-    padding-block-end: clamp(9rem, 21vw, 15rem);
+    padding-block-end: clamp(6rem, 17vw, 11rem);
   }
   .hero__title {
     margin-block: var(--space-4) var(--space-4);
@@ -379,7 +377,7 @@
     inset-inline: 0;
     inset-block-end: -1px;
     width: 100%;
-    height: clamp(9rem, 23vw, 18rem);
+    height: clamp(4.5rem, 14vw, 11rem);
     pointer-events: none;
   }
 

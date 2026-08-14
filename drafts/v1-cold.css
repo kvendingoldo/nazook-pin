@@ -2,38 +2,31 @@
      DESIGN TOKENS
      ============================================================ */
   :root {
-    /* --- surfaces & ink: тёплые поверхности --- */
-    --surface-page:   #fffaf2;
+    /* --- surfaces & ink: три поверхности, не больше --- */
+    --surface-page:   #f7fbff;
     --surface-raised: #ffffff;
-    --surface-sunken: #f8ecd9;
+    --surface-sunken: #e8f2fa;
 
-    --text-primary:   #33231a;
-    --text-secondary: #6f5138;
+    --text-primary:   #10293a;
+    --text-secondary: #3d6076;
     --text-inverse:   #ffffff;
 
-    --border:         #eeddc4;
-    --border-strong:  #ddbd92;
+    --border:         #d5e5f1;
+    --border-strong:  #b3d3e8;
 
-    /* --- акцент: тёмный цвет со значка --- */
-    --accent:         #a8551a;   /* кнопки, ссылки, интерактив */
-    --accent-hover:   #8f4513;
-    --accent-soft:    #e6b478;   /* линии, иллюстрация         */
-    --accent-tint:    #fbead3;   /* заливки, чипы, бейдж       */
-    --accent-quote:   #c9922f;   /* полоса цитаты — корочка    */
+    /* --- accents: один интерактивный синий + два оттенка --- */
+    --accent:         #1f6690;   /* интерактив, тексты на светлом  */
+    --accent-hover:   #17506f;
+    --accent-soft:    #8fc2e2;   /* линии, иллюстрация            */
+    --accent-tint:    #d9ebf8;   /* заливки, чипы                 */
+    --accent-quote:   #a8681d;   /* тёплый акцент цитаты (назук)  */
 
-    /* --- голубое: небо и Волга (только иллюстрация, не интерфейс) --- */
-    --sky:            #e6f1fa;
-    --water:          #cfe4f4;
-    --water-line:     #8fbcdc;
+    /* --- иллюстрация моста (производные от палитры) --- */
+    --bridge-water:   #cfe4f4;
+    --bridge-arch:    #7fb6db;
+    --bridge-pier:    #4f92bd;
 
-    /* --- мост: тёплый силуэт над голубой водой --- */
-    --bridge-water:   var(--water);
-    --bridge-arch:    #c98f4e;
-    --bridge-pier:    #8a6034;
-    --bridge-truss:   #b98a55;
-    --lamp:           #e0912b;
-
-    --shadow-rgb:     74 45 22;
+    --shadow-rgb:     16 41 58;
 
     /* --- spacing scale (4px база) --- */
     --space-1: .25rem;
@@ -69,7 +62,6 @@
 
     /* --- layout --- */
     --container: 68rem;                        /* 1088px */
-    --article:   38rem;                        /* мера текстовой колонки */
     --gutter:    clamp(1.25rem, 5vw, 2rem);
     --section-y: clamp(3.5rem, 8vw, 5.5rem);
 
@@ -112,8 +104,6 @@
 
   a { color: var(--accent); }
 
-  ::selection { background: var(--accent-tint); color: var(--text-primary); }
-
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
@@ -129,10 +119,7 @@
     padding-inline: var(--gutter);
   }
 
-  .section {
-    padding-block: var(--section-y);
-    scroll-margin-block-start: var(--space-6);
-  }
+  .section { padding-block: var(--section-y); }
   .section--sunken {
     background: var(--surface-sunken);
     border-block-start: 1px solid var(--border);
@@ -273,7 +260,7 @@
     flex-direction: column;
     align-items: center;
     gap: var(--space-3);
-    padding: var(--space-5) var(--space-5) var(--space-4);
+    padding: var(--space-6) var(--space-5);
     background: var(--surface-raised);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
@@ -309,9 +296,9 @@
     padding-inline-start: var(--space-4);
     border-inline-start: 3px solid var(--accent-quote);
     font-size: var(--text-lg);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.45;
-    color: var(--accent);
+    color: var(--text-primary);
   }
 
   /* ============================================================
@@ -322,7 +309,7 @@
   .hero {
     position: relative;
     padding-block-start: var(--space-2);
-    background: linear-gradient(180deg, var(--sky) 0%, #fdf3e6 58%, var(--surface-page) 100%);
+    background: linear-gradient(180deg, var(--surface-sunken), var(--surface-page) 78%);
     border-block-end: 1px solid var(--border);
     overflow: hidden;
   }
@@ -334,7 +321,7 @@
     align-items: center;
     gap: var(--space-7);
     padding-block-start: var(--space-6);
-    padding-block-end: clamp(9rem, 21vw, 15rem);
+    padding-block-end: clamp(6rem, 17vw, 11rem);
   }
   .hero__title {
     margin-block: var(--space-4) var(--space-4);
@@ -360,10 +347,8 @@
     margin-block-start: var(--space-6);
   }
 
-  .hero__pin-wrap { align-self: end; }
   .hero__pin {
     width: min(20rem, 100%);
-    margin-block-end: calc(var(--space-7) * -1);
     margin-inline: auto;
     filter: drop-shadow(0 1.5rem 1.75rem rgb(var(--shadow-rgb) / .22));
     animation: float 8s ease-in-out infinite;
@@ -379,32 +364,21 @@
     inset-inline: 0;
     inset-block-end: -1px;
     width: 100%;
-    height: clamp(9rem, 23vw, 18rem);
+    height: clamp(4.5rem, 14vw, 11rem);
     pointer-events: none;
   }
 
   /* --- История --- */
-  /* Раскладка в две колонки: блок занимает полосу целиком */
-  .story__grid { display: block; }
-
-  .story__heading {
-    max-width: 24ch;
-    margin-block-end: var(--space-5);
-    font-size: var(--text-xl);
+  .story__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-5) var(--space-7);
+    align-items: center;
   }
-
-  .story__body {
-    columns: 2;
-    column-gap: var(--space-7);
-    color: var(--text-secondary);
-  }
-  .story__body > p { break-inside: avoid; }
+  .story__heading { font-size: var(--text-xl); max-width: 15ch; }
+  .story__quote { margin-block-start: var(--space-5); }
+  .story__body { color: var(--text-secondary); }
   .story__body strong { color: var(--text-primary); font-weight: 700; }
-
-  .story__quote {
-    margin-block-start: var(--space-6);
-    text-wrap: balance;
-  }
 
   /* --- Авторы --- */
   .authors__heading { font-size: var(--text-xl); }
@@ -435,9 +409,11 @@
 
   /* Планшет: значок уступает место тексту, история в одну колонку */
   @media (max-width: 60rem) {
-    .story__body { columns: 1; }
     .hero__grid { gap: var(--space-5); }
     .hero__pin  { width: min(15rem, 100%); }
+    .story__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+    .story__heading { max-width: 24ch; }
+    .story__quote { margin-block-start: var(--space-4); }
   }
 
   /* Мобильный: значок над заголовком, действия на всю ширину */

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[черновик] Значок «Назук» — тёплый вариант оформления</title>
+<meta name="description" content="Эмалевый значок в виде назука: для большинства — просто выпечка, а саратовцы узнают своих с одного взгляда. История значка и его авторы.">
+<meta name="robots" content="noindex, nofollow">
+
+
+<link rel="icon" href="../assets/nazuk.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/nazuk.png">
+<meta name="theme-color" content="#e6f1fa">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Значок «Назук»">
+<meta property="og:title" content="Значок «Назук» — саратовский пароль">
+<meta property="og:description" content="Для большинства — просто выпечка, а саратовцы узнают своих с одного взгляда.">
+<meta property="og:image" content="https://kvendingoldo.github.io/nazook-pin/assets/nazuk.png">
+<meta property="og:image:width" content="1254">
+<meta property="og:image:height" content="1254">
+<meta property="og:image:alt" content="Эмалевый значок «Назук» — два назука с золотистой корочкой">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="v2-warm.css">
+
+</head>
+<body>
+
+<main>
+
+  <!-- ================= ПЕРВЫЙ ЭКРАН ================= -->
+  <section class="hero" aria-labelledby="hero-title">
+
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <nav class="lang" aria-label="Язык сайта">
+          <a class="lang__option" href="../index.html" aria-current="page" lang="ru">Рус</a>
+          <a class="lang__option" href="../en/index.html" lang="en" hreflang="en">Eng</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container hero__grid">
+      <div>
+        <p><span class="badge">Саратов · значок для своих</span></p>
+
+        <h1 class="hero__title" id="hero-title">
+          Значок «Назук»
+          <span class="hero__tagline">Саратовский пароль</span>
+        </h1>
+
+        <p class="hero__lead">
+          Эмалевый значок в виде назука. Для большинства это просто выпечка,
+          а саратовцы узнают своих с одного взгляда.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#story">История значка</a>
+          <a class="btn btn--secondary" href="#authors">Авторы</a>
+        </div>
+      </div>
+
+      <div class="hero__pin-wrap">
+        <img class="hero__pin" src="../assets/nazuk.png" width="1254" height="1254"
+             fetchpriority="high" decoding="async"
+             alt="Эмалевый значок «Назук» — два назука с золотистой корочкой">
+      </div>
+    </div>
+
+    <svg class="hero__bridge" viewBox="0 0 1600 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="bridge-fade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#000"/>
+          <stop offset="10%"  stop-color="#fff"/>
+          <stop offset="90%"  stop-color="#fff"/>
+          <stop offset="100%" stop-color="#000"/>
+        </linearGradient>
+        <mask id="bridge-edges"><rect width="1600" height="200" fill="url(#bridge-fade)"/></mask>
+        <linearGradient id="water-depth" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="var(--water)" stop-opacity="1"/>
+          <stop offset="100%" stop-color="var(--water)" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <g mask="url(#bridge-edges)">
+        <!-- Волга -->
+        <rect x="0" y="150" width="1600" height="50" fill="url(#water-depth)"/>
+
+        <!-- пролётные арки -->
+        <g fill="none" stroke="var(--bridge-arch)" stroke-width="3" stroke-linecap="round">
+          <path d="M100 150Q220 66 340 150"/>
+          <path d="M340 150Q460 30 580 150"/>
+          <path d="M580 150Q700 -2 820 150"/>
+          <path d="M820 150Q940 -2 1060 150"/>
+          <path d="M1060 150Q1180 30 1300 150"/>
+          <path d="M1300 150Q1420 66 1540 150"/>
+        </g>
+
+        <!-- опоры -->
+        <g stroke="var(--bridge-pier)" stroke-width="6" stroke-linecap="round">
+          <path d="M100 152v-30M340 152v-30M580 152v-30M820 152v-30M1060 152v-30M1300 152v-30M1540 152v-30"/>
+        </g>
+        <g stroke="var(--accent-soft)" stroke-width="4" stroke-linecap="round">
+          <path d="M20 152v-32M1580 152v-32"/>
+        </g>
+
+        <!-- полотно с «горбами» -->
+        <path d="M0 120H100Q220 76 340 120Q460 40 580 120Q700 8 820 120Q940 8 1060 120Q1180 40 1300 120Q1420 76 1540 120H1600"
+              fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linejoin="round"/>
+        <path d="M0 112H100Q220 68 340 112Q460 32 580 112Q700 0 820 112Q940 0 1060 112Q1180 32 1300 112Q1420 68 1540 112H1600"
+              fill="none" stroke="var(--accent-soft)" stroke-width="1.8"/>
+
+        <!-- отражение в воде -->
+        <g stroke="var(--water-line)" stroke-width="2" stroke-linecap="round" opacity=".7">
+          <path d="M60 164h80M220 172h120M420 164h140M660 176h180M900 164h140M1120 172h120M1340 164h150"/>
+          <path d="M100 154v14M340 154v18M580 154v22M820 154v22M1060 154v18M1300 154v14" opacity=".5"/>
+        </g>
+      </g>
+    </svg>
+  </section>
+
+  <!-- ================= ИСТОРИЯ ================= -->
+  <section class="section" id="story" aria-labelledby="story-title">
+    <div class="container">
+      <p class="eyebrow">История</p>
+
+      <div class="story__grid">
+        <div>
+          <h2 class="story__heading" id="story-title">Всё началось с шутки в баре</h2>
+        </div>
+
+        <div class="story__body stack">
+          <p>
+            Летом 2025 года мы сидели в баре в Тбилиси и пытались придумать
+            что-то, что знает каждый саратовец — и что совсем не очевидно
+            для остальных. Вокруг была обычная эмигрантская жизнь: люди
+            из разных городов и стран, разбросанные между Грузией, Сербией,
+            Арменией, Израилем. Довольно быстро мы пришли к назуку.
+          </p>
+          <p>
+            Оказалось, это почти идеальный саратовский пароль. Для большинства
+            слово «назук» не значит вообще ничего. Зато саратовцы — в Тбилиси,
+            Лондоне, Париже, Сан-Франциско — узнают его моментально.
+            А вместе с ним узнают и своих.
+          </p>
+          <p>
+            Была только одна проблема: сам назук с собой особо не повозишь.
+            Всё-таки выпечка, дорогу через страны и континенты она переносит
+            хуже людей. Так мы и разогнали идею: <strong>надо делать значок</strong>.
+          </p>
+          <p>
+            Тогда это казалось скорее удачным пранком, чем проектом. Но пранк
+            быстро вышел из-под контроля: первые эскизы, новые версии дизайна,
+            поиски мастеров, эксперименты с производством, логистика и ещё
+            десяток вещей, о которых мы в тот вечер не подозревали.
+          </p>
+          <p>
+            И вот спустя год, в конце лета 2026-го, мы наконец его выпускаем.
+          </p>
+
+        </div>
+
+        <blockquote class="quote story__quote">
+          <p>Так у саратовского пароля появилась форма, которую можно носить с собой.</p>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= АВТОРЫ ================= -->
+  <section class="section section--sunken" id="authors" aria-labelledby="authors-title">
+    <div class="container">
+      <p class="eyebrow">Авторы</p>
+      <h2 class="authors__heading" id="authors-title">Нас трое</h2>
+
+      <ul class="authors__list">
+
+        <li class="card">
+          <div class="avatar">
+            <img src="../assets/nastya.jpg" alt="" width="600" height="600" loading="lazy">
+          </div>
+          <h3 class="card__name">Настя Меренцова</h3>
+          <div class="card__links">
+            <a class="chip" href="https://www.instagram.com/a_mellnik/" target="_blank" rel="noopener"
+               aria-label="Instagram: Настя Меренцова">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a class="chip" href="https://t.me/a_mellnik" target="_blank" rel="noopener"
+               aria-label="Telegram: Настя Меренцова">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+              Telegram
+            </a>
+          </div>
+        </li>
+
+        <li class="card">
+          <div class="avatar">
+            <img src="../assets/sasha.jpg" alt="" width="600" height="600" loading="lazy">
+          </div>
+          <h3 class="card__name">Александр Шаров</h3>
+          <div class="card__links">
+            <a class="chip" href="https://www.instagram.com/kvendingoldo/" target="_blank" rel="noopener"
+               aria-label="Instagram: Александр Шаров">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a class="chip" href="https://t.me/kvendingoldo" target="_blank" rel="noopener"
+               aria-label="Telegram: Александр Шаров">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+              Telegram
+            </a>
+          </div>
+        </li>
+
+        <li class="card">
+          <div class="avatar">
+            <img src="../assets/sanya.jpg" alt="" width="600" height="600"
+                 loading="lazy" style="object-position: 50% 42%">
+          </div>
+          <h3 class="card__name">Александр Ермолаев</h3>
+          <div class="card__links">
+            <a class="chip" href="https://www.instagram.com/ermolaxe/" target="_blank" rel="noopener"
+               aria-label="Instagram: Александр Ермолаев">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a class="chip" href="https://t.me/ermolaxe" target="_blank" rel="noopener"
+               aria-label="Telegram: Александр Ермолаев">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.6c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.3c.3.8 1.3 1 1.9.4l2.6-2.5 4.6 3.4c.7.5 1.7.1 1.9-.7l3-14.4c.2-.9-.7-1.7-1.6-1.4z"/><path d="m7.5 13.9 9.6-6.6-7.8 7.6"/></svg>
+              Telegram
+            </a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Родом из Саратова · <span id="year">2026</span></p>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Значок «Назук»",
+  "description": "Эмалевый значок в виде назука — опознавательный знак саратовцев: по нему земляки узнают друг друга в любом городе.",
+  "image": "https://kvendingoldo.github.io/nazook-pin/assets/nazuk.png",
+  "url": "https://kvendingoldo.github.io/nazook-pin/",
+  "material": "Эмаль",
+  "brand": { "@type": "Brand", "name": "Назук" },
+  "inLanguage": "ru",
+  "areaServed": { "@type": "City", "name": "Саратов" }
+}
+</script>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>
