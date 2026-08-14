@@ -4,7 +4,7 @@
   :root {
     /* --- surfaces & ink: тёплые поверхности --- */
     --surface-page:   #fffaf2;
-    --surface-raised: #ffffff;
+    --surface-raised: #fffdf8;
     --surface-sunken: #f8ecd9;
 
     --text-primary:   #33231a;
@@ -17,7 +17,6 @@
     /* --- акцент: тёмный цвет со значка --- */
     --accent:         #a8551a;   /* кнопки, ссылки, интерактив */
     --accent-hover:   #8f4513;
-    --accent-soft:    #e6b478;   /* линии, иллюстрация         */
     --accent-tint:    #fbead3;   /* заливки, чипы, бейдж       */
     --accent-quote:   #c9922f;   /* полоса цитаты — корочка    */
 
@@ -27,7 +26,6 @@
     --water-line:     #8fbcdc;
 
     /* --- мост: тёплый силуэт над голубой водой --- */
-    --bridge-water:   var(--water);
     --bridge-arch:    #c98f4e;
     --bridge-pier:    #8a6034;
     --bridge-truss:   #b98a55;
@@ -43,12 +41,10 @@
     --space-5: 1.5rem;
     --space-6: 2rem;
     --space-7: 3rem;
-    --space-8: 4rem;
 
     /* --- type scale --- */
     --text-2xs:  .75rem;     /* 12 — надзаголовки, футер */
     --text-xs:   .875rem;    /* 14 — кнопки, чипы        */
-    --text-sm:   .9375rem;   /* 15 — подписи             */
     --text-base: 1.0625rem;  /* 17 — основной текст      */
     --text-md:   1.1875rem;  /* 19 — лид                 */
     --text-lg:   1.375rem;   /* 22 — цитата              */
@@ -56,8 +52,6 @@
     --text-2xl:  clamp(2.1rem, 4.4vw, 3rem);     /* h1  */
 
     /* --- radii --- */
-    --radius-sm:   .5rem;
-    --radius-md:   .875rem;
     --radius-lg:   1.25rem;
     --radius-pill: 999px;
 
@@ -69,7 +63,6 @@
 
     /* --- layout --- */
     --container: 68rem;                        /* 1088px */
-    --article:   38rem;                        /* мера текстовой колонки */
     --gutter:    clamp(1.25rem, 5vw, 2rem);
     --section-y: clamp(3.5rem, 8vw, 5.5rem);
 
@@ -267,35 +260,38 @@
   .chip:hover { background: var(--accent); border-color: var(--accent); color: var(--text-inverse); }
   .chip svg { width: 1em; height: 1em; flex: none; }
 
-  /* Карточка автора */
-  .card {
+  /* Автор: портрет, имя, контакты — без «коробки», как и остальная страница */
+  .author {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-3);
-    padding: var(--space-5) var(--space-5) var(--space-4);
-    background: var(--surface-raised);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
     text-align: center;
-    transition: border-color var(--duration) var(--ease),
-                box-shadow var(--duration) var(--ease);
   }
-  .card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
 
   .avatar {
-    width: 7rem;
-    height: 7rem;
+    width: 7.5rem;
+    height: 7.5rem;
     border-radius: 50%;
     overflow: hidden;
     background: var(--accent-tint);
-    box-shadow: 0 0 0 1px var(--border);
+    box-shadow: 0 0 0 4px var(--surface-sunken), 0 0 0 5px var(--border);
+    transition: box-shadow var(--duration) var(--ease);
   }
-  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  /* фотографии сняты в очень разном свете — лёгкая нормализация,
+     чтобы три портрета читались одним рядом */
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(.88) sepia(.09);
+  }
+  .author:hover .avatar { box-shadow: 0 0 0 4px var(--surface-sunken), 0 0 0 5px var(--accent-quote); }
 
-  .card__name { font-size: var(--text-base); }
+  .author__name { font-size: var(--text-base); }
+  .author__links { margin-block-start: var(--space-1); }
 
-  .card__links {
+  .author__links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -411,7 +407,7 @@
   .authors__list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-4);
+    gap: var(--space-6) var(--space-5);
     margin-block-start: var(--space-6);
     padding: 0;
     list-style: none;
@@ -435,8 +431,10 @@
 
   /* Планшет: значок уступает место тексту, история в одну колонку */
   @media (max-width: 60rem) {
-    .story__body { columns: 1; }
-    .hero__grid { gap: var(--space-5); }
+    /* одна колонка — но не во всю ширину: длина строки остаётся читаемой */
+    .story__body { columns: 1; max-width: 62ch; }
+    .hero__grid { gap: var(--space-5); padding-block-end: clamp(8rem, 30vw, 15rem); }
+    .hero__bridge { height: clamp(8rem, 26vw, 15rem); }
     .hero__pin  { width: min(15rem, 100%); }
   }
 
@@ -446,8 +444,11 @@
       grid-template-columns: minmax(0, 1fr);
       justify-items: center;
       text-align: center;
-      padding-block-end: clamp(4rem, 22vw, 6rem);
+      padding-block-end: clamp(9rem, 40vw, 13rem);
     }
+    /* на узком экране лента моста выше: иначе от иллюстрации остаются
+       только оголовки опор (сама графика не меняется — только её размер) */
+    .hero__bridge { height: clamp(10rem, 42vw, 14rem); }
     .hero__pin-wrap { order: -1; }
     .hero__pin { width: min(11rem, 60%); }
     .hero__lead { margin-inline: auto; }
@@ -455,7 +456,7 @@
     .hero__actions .btn { width: 100%; }
     .authors__list { grid-template-columns: minmax(0, 1fr); max-width: 22rem; }
     .chip { padding-inline: var(--space-2); }
-    .card {
+    .author {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
       grid-template-areas:
@@ -464,12 +465,11 @@
       align-items: center;
       column-gap: var(--space-4);
       row-gap: var(--space-2);
-      padding: var(--space-4);
       text-align: start;
     }
-    .avatar { grid-area: avatar; width: 4.5rem; height: 4.5rem; }
-    .card__name { grid-area: name; }
-    .card__links { grid-area: links; justify-content: flex-start; margin-block-start: 0; }
+    .avatar { grid-area: avatar; width: 4.75rem; height: 4.75rem; }
+    .author__name { grid-area: name; }
+    .author__links { grid-area: links; justify-content: flex-start; margin-block-start: 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
