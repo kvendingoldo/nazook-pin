@@ -41,9 +41,16 @@ sips -Z 256 -s formatOptions 82 /tmp/sq.jpg --out assets/имя.jpg
 **Превью для соцсетей** (`assets/og-cover.png`, 1200×630) собирается из первого
 экрана — если он заметно изменится, пересними:
 
+Переключатель языка в превью не нужен, поэтому снимаем не сам `index.html`,
+а его временную копию, где `.lang` скрыт (`visibility` — чтобы вёрстка первого
+экрана не поехала):
+
 ```sh
+sed 's|</head>|<style>.lang{visibility:hidden}</style></head>|' \
+  index.html > .og-shot.tmp.html
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
-  --window-size=1200,630 --screenshot=assets/og-cover.png "file://$PWD/index.html"
+  --window-size=1200,630 --screenshot=assets/og-cover.png "file://$PWD/.og-shot.tmp.html"
+rm .og-shot.tmp.html
 ```
 
 ## Локальный просмотр
