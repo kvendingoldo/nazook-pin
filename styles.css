@@ -486,8 +486,8 @@
 
   /* вторая секция той же полосы: без повторной линии сверху */
   #get { padding-block-end: var(--space-6); }
-  /* карточка поддержки не должна упираться в авторов */
-  #donate { padding-block-end: clamp(6.25rem, 9vw, 8rem); }
+  /* карточке нужен воздух больше обычного, но не провал: она объект, а не абзац */
+  #donate { padding-block-end: clamp(3.5rem, 6vw, 4.5rem); }
   .section--joined { border-block-start: 0; padding-block-start: 0; }
 
   /* --- Авторы --- */
@@ -529,7 +529,8 @@
     .get__text { max-width: 62ch; }
     /* карточка в одну колонку: значок сверху, текст под ним */
     .support { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
-    .support__figure { justify-self: start; width: min(13rem, 72%); }
+    /* значок по центру: в одну колонку он читается как иллюстрация к блоку */
+    .support__figure { justify-self: center; width: min(13rem, 72%); }
     /* штамп уменьшается вместе с иллюстрацией, иначе перекрывает её целиком */
     .support__stamp {
       inset-inline-start: 4%;
