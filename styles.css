@@ -452,18 +452,19 @@
     position: relative;
     justify-self: center;
     width: min(19.5rem, 100%);
+    /* тень живёт на обёртке: filter и transform на одном элементе WebKit иногда
+       растрирует по прямоугольнику слоя — тогда у значка видны квадратные края */
+    filter: drop-shadow(0 1rem 1.5rem rgb(var(--shadow-rgb) / .22));
   }
   /* штамп тиража — оттиск на готовой партии, поэтому чуть завален */
   .support__stamp {
     position: absolute;
     inset-block-end: 10%;
     inset-inline-start: 0;
+    box-shadow: none;
     transform: rotate(-8deg);
   }
-  .support__pin {
-    transform: rotate(-5deg);
-    filter: drop-shadow(0 1rem 1.5rem rgb(var(--shadow-rgb) / .22));
-  }
+  .support__pin { transform: rotate(-5deg); }
 
   .support__body { min-width: 0; }
   .support__heading { font-size: var(--text-xl); }
