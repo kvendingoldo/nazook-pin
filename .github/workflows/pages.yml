@@ -25,6 +25,14 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
+      - name: Проставить версию и дату сборки
+        env:
+          APP_VERSION: build-${{ github.run_number }}
+          FULL_SHA: ${{ github.sha }}
+        run: |
+          export GIT_SHA="${FULL_SHA::7}"
+          sh scripts/stamp-build.sh
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

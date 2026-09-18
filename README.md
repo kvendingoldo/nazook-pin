@@ -15,6 +15,8 @@ assets/             графика значка, портреты авторов
 robots.txt          индексация разрешена, черновики закрыты, ссылка на sitemap
 sitemap.xml         обе версии с hreflang-альтернативами
 drafts/             ранние варианты оформления: noindex, из поиска исключены
+scripts/stamp-build.sh        проставляет версию и дату сборки в HTML
+Dockerfile                    образ с nginx, стартует тот же статический сайт
 .github/workflows/pages.yml   автодеплой при пуше в main
 ```
 
@@ -52,6 +54,48 @@ sed 's|</head>|<style>.lang{visibility:hidden}</style></head>|' \
   --window-size=1200,630 --screenshot=assets/og-cover.png "file://$PWD/.og-shot.tmp.html"
 rm .og-shot.tmp.html
 ```
+
+## Версия и дата сборки
+
+Обе версии сайта печатают в консоль браузера версию, дату сборки и коммит —
+их же можно прочитать из `window.nazook.build`:
+
+```
+Значок «Назук»  1.0.0
+Сборка: 2026-09-18T13:24:00Z · коммит 0be6b74
+```
+
+Значения живут в `<meta name="build:version|date|commit">` и по умолчанию пустые
+(в консоли — `dev` и «локальная, дата не проставлена»). Проставляет их
+`scripts/stamp-build.sh`, прямо в HTML:
+
+```sh
+APP_VERSION=1.0.0 sh scripts/stamp-build.sh    # обе версии сайта
+sh scripts/stamp-build.sh index.html           # только указанные файлы
+```
+
+Без переменных версия и коммит берутся из git (`git describe --tags --always`,
+`git rev-parse --short HEAD`), дата — текущий UTC. Скрипт правит файлы на месте,
+поэтому в репозитории меты остаются пустыми: штампует их сборка, а не коммит.
+
+В CI (`pages.yml`) шаг выполняется перед загрузкой артефакта, версия —
+`build-<номер запуска>`.
+
+## Docker
+
+```sh
+docker build -t nazook-pin \
+  --build-arg APP_VERSION="$(git describe --tags --always)" \
+  --build-arg GIT_SHA="$(git rev-parse --short HEAD)" \
+  --build-arg BUILD_DATE="$(date -u +%Y-%m-%dT%H:%M:%SZ)" .
+
+docker run --rm -p 8080:80 nazook-pin   # http://localhost:8080
+```
+
+Сборка двухстадийная: alpine штампует версию тем же `stamp-build.sh`, nginx
+раздаёт результат. Те же значения уходят в OCI-лейблы
+(`org.opencontainers.image.version|created|revision`). Все три аргумента
+необязательны — без них будет `dev`, дата в HTML проставится временем сборки.
 
 ## Локальный просмотр
 

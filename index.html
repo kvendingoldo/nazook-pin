@@ -9,6 +9,11 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="theme-color" content="#f8ecd9">
 
+<!-- проставляются при сборке (scripts/stamp-build.sh); локально остаются пустыми -->
+<meta name="build:version" content="dev">
+<meta name="build:date" content="">
+<meta name="build:commit" content="">
+
 <link rel="canonical" href="https://kvendingoldo.github.io/nazook-pin/">
 <link rel="alternate" hreflang="ru" href="https://kvendingoldo.github.io/nazook-pin/">
 <link rel="alternate" hreflang="en" href="https://kvendingoldo.github.io/nazook-pin/en/">
@@ -414,17 +419,43 @@
     </div>
   </section>
 
-  <!-- ================= АВТОРЫ ================= -->
+  <!-- ================= КАК ПОЛУЧИТЬ ================= -->
   <section class="section section--sunken" id="get" aria-labelledby="get-title">
     <div class="container">
       <p class="eyebrow">Как получить</p>
       <div class="get__grid">
-        <h2 class="get__heading" id="get-title">Значок выпускаем сами</h2>
-        <p class="get__text">Тираж небольшой, поэтому проще всего договориться напрямую: напишите любому из нас — расскажем, как получить значок.</p>
+        <h2 class="get__heading" id="get-title">Где взять значок</h2>
+        <div>
+          <p class="get__text">Тираж небольшой, поэтому магазина пока нет. Напишите любому из нас&nbsp;— договоримся, как передать значок.</p>
+          <p class="get__action"><a class="link-arrow" href="#authors">Написать нам <span aria-hidden="true">→</span></a></p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ================= ПОДДЕРЖАТЬ ================= -->
+  <section class="section section--sunken section--joined" id="donate" aria-labelledby="donate-title">
+    <div class="container">
+      <p class="eyebrow">Поддержать</p>
+
+      <div class="support">
+        <div class="support__figure">
+          <img class="support__pin" src="assets/nazuk.png" width="1254" height="1254"
+               loading="lazy" decoding="async" alt="">
+          <p class="badge badge--solid support__stamp">2-я партия</p>
+        </div>
+
+        <div class="support__body">
+          <h2 class="support__heading" id="donate-title">Первая партия&nbsp;— бесплатно.<br>Поможете сделать вторую?</h2>
+          <p class="support__text">За значок мы денег не просим. Но если хочется помочь нам сделать следующую партию&nbsp;— можно поддержать производство.</p>
+          <p class="support__text">Имена и ники тех, кто задонатит, попадут на карточку-подложку второй партии.</p>
+          <p class="support__kicker">Так можно буквально попасть в историю саратовского назука.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= АВТОРЫ ================= -->
   <section class="section section--sunken section--joined" id="authors" aria-labelledby="authors-title">
     <div class="container">
       <p class="eyebrow">Авторы</p>
@@ -488,6 +519,8 @@
     </div>
   </section>
 
+
+
 </main>
 
 <footer class="footer">
@@ -510,6 +543,32 @@
 </script>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<!-- версия и дата сборки в консоли -->
+<script>
+  (function () {
+    var meta = function (name) {
+      var el = document.querySelector('meta[name="build:' + name + '"]');
+      return (el && el.content || '').trim();
+    };
+
+    var build = {
+      version: meta('version') || 'dev',
+      date:    meta('date'),
+      commit:  meta('commit')
+    };
+    window.nazook = { build: build };
+
+    console.log(
+      '%cЗначок «Назук»%c' + build.version + '%c',
+      'background:#a8551a;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px 0 0 4px',
+      'background:#33231a;color:#fff;padding:2px 8px;border-radius:0 4px 4px 0',
+      ''
+    );
+    console.log('Сборка: ' + (build.date || 'локальная, дата не проставлена') +
+                (build.commit ? ' · коммит ' + build.commit : ''));
+  })();
+</script>
 
 </body>
 </html>

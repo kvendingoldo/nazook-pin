@@ -1,0 +1,10 @@
+.git
+.github
+.idea
+.claude
+drafts
+scratchpad
+**/.DS_Store
+README.md
+Dockerfile
+.dockerignore

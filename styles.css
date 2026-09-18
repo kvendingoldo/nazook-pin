@@ -6,6 +6,7 @@
     --surface-page:   #fffaf2;
     --surface-raised: #fffdf8;
     --surface-sunken: #f8ecd9;
+    --surface-warm:   #f6e3c6;   /* карточка поддержки */
 
     --text-primary:   #33231a;
     --text-secondary: #6f5138;
@@ -167,6 +168,23 @@
     letter-spacing: .14em;
     text-transform: uppercase;
   }
+
+  .badge--solid {
+    background: var(--accent);
+    color: var(--text-inverse);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Текстовая ссылка со стрелкой */
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 700;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: .25em;
+  }
+  .link-arrow:hover { color: var(--accent-hover); text-decoration-color: currentColor; }
 
   /* Верхняя панель: переключатель языка */
   .topbar {
@@ -417,8 +435,59 @@
   .get__heading { font-size: var(--text-xl); max-width: 16ch; }
   .get__text { color: var(--text-secondary); }
 
+  .get__action { margin-block-start: var(--space-4); }
+
+  /* --- Поддержать: единственный яркий центр полосы. Тёплая карточка,
+     иллюстрация — её часть, бейдж тиража над заголовком --- */
+  .support {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: var(--space-6) var(--space-7);
+    padding: clamp(2rem, 4vw, 3.25rem);
+    border-radius: 1.75rem;
+    background: var(--surface-warm);
+  }
+  .support__figure {
+    position: relative;
+    justify-self: center;
+    width: min(19.5rem, 100%);
+  }
+  /* штамп тиража — оттиск на готовой партии, поэтому чуть завален */
+  .support__stamp {
+    position: absolute;
+    inset-block-end: 10%;
+    inset-inline-start: 0;
+    transform: rotate(-8deg);
+  }
+  .support__pin {
+    transform: rotate(-5deg);
+    filter: drop-shadow(0 1rem 1.5rem rgb(var(--shadow-rgb) / .22));
+  }
+
+  .support__body { min-width: 0; }
+  .support__heading { font-size: var(--text-xl); }
+  .support__text {
+    margin-block-start: var(--space-4);
+    max-width: 52ch;
+    color: var(--text-secondary);
+    text-wrap: pretty;
+  }
+  /* punchline — единственная акцентная строка блока */
+  .support__kicker {
+    max-width: 44ch;
+    margin-block-start: var(--space-6);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--accent);
+    text-wrap: balance;
+  }
+
   /* вторая секция той же полосы: без повторной линии сверху */
   #get { padding-block-end: var(--space-6); }
+  /* карточка поддержки не должна упираться в авторов */
+  #donate { padding-block-end: clamp(6.25rem, 9vw, 8rem); }
   .section--joined { border-block-start: 0; padding-block-start: 0; }
 
   /* --- Авторы --- */
@@ -458,6 +527,10 @@
     .get__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
     .get__heading { max-width: 24ch; }
     .get__text { max-width: 62ch; }
+    /* карточка в одну колонку: значок сверху, текст под ним */
+    .support { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+    .support__figure { justify-self: start; width: min(13rem, 60%); }
+    .support__text, .support__kicker { max-width: 62ch; }
     .hero__grid { gap: var(--space-5); padding-block-end: clamp(8rem, 30vw, 15rem); }
     .hero__bridge { height: clamp(8rem, 26vw, 15rem); }
     .hero__pin  { width: min(15rem, 100%); }

@@ -9,6 +9,11 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="theme-color" content="#f8ecd9">
 
+<!-- проставляются при сборке (scripts/stamp-build.sh); локально остаются пустыми -->
+<meta name="build:version" content="dev">
+<meta name="build:date" content="">
+<meta name="build:commit" content="">
+
 <link rel="canonical" href="https://kvendingoldo.github.io/nazook-pin/en/">
 <link rel="alternate" hreflang="ru" href="https://kvendingoldo.github.io/nazook-pin/">
 <link rel="alternate" hreflang="en" href="https://kvendingoldo.github.io/nazook-pin/en/">
@@ -414,17 +419,43 @@
     </div>
   </section>
 
-  <!-- ================= АВТОРЫ ================= -->
+  <!-- ================= HOW TO GET ONE ================= -->
   <section class="section section--sunken" id="get" aria-labelledby="get-title">
     <div class="container">
       <p class="eyebrow">How to get one</p>
       <div class="get__grid">
-        <h2 class="get__heading" id="get-title">We make the pins ourselves</h2>
-        <p class="get__text">The run is small, so the easiest way is to arrange it directly — write to any of us and we will tell you how to get a pin.</p>
+        <h2 class="get__heading" id="get-title">Where to get a pin</h2>
+        <div>
+          <p class="get__text">The run is small, so there is no shop yet. Write to any of us and we will work out how to get a pin to you.</p>
+          <p class="get__action"><a class="link-arrow" href="#authors">Write to us <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ================= SUPPORT ================= -->
+  <section class="section section--sunken section--joined" id="donate" aria-labelledby="donate-title">
+    <div class="container">
+      <p class="eyebrow">Support</p>
+
+      <div class="support">
+        <div class="support__figure">
+          <img class="support__pin" src="../assets/nazuk.png" width="1254" height="1254"
+               loading="lazy" decoding="async" alt="">
+          <p class="badge badge--solid support__stamp">2nd run</p>
+        </div>
+
+        <div class="support__body">
+          <h2 class="support__heading" id="donate-title">The first run is free.<br>Help us make the second?</h2>
+          <p class="support__text">We are not asking for money for the pin. But if you feel like helping the next run happen, you can chip in for production.</p>
+          <p class="support__text">The names and nicknames of everyone who donates go on the backing card of the second run.</p>
+          <p class="support__kicker">So you can quite literally end up in the history of the Saratov nazook.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AUTHORS ================= -->
   <section class="section section--sunken section--joined" id="authors" aria-labelledby="authors-title">
     <div class="container">
       <p class="eyebrow">Authors</p>
@@ -488,6 +519,8 @@
     </div>
   </section>
 
+
+
 </main>
 
 <footer class="footer">
@@ -510,6 +543,32 @@
 </script>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<!-- version and build date in the console -->
+<script>
+  (function () {
+    var meta = function (name) {
+      var el = document.querySelector('meta[name="build:' + name + '"]');
+      return (el && el.content || '').trim();
+    };
+
+    var build = {
+      version: meta('version') || 'dev',
+      date:    meta('date'),
+      commit:  meta('commit')
+    };
+    window.nazook = { build: build };
+
+    console.log(
+      '%cNazook Pin%c' + build.version + '%c',
+      'background:#a8551a;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px 0 0 4px',
+      'background:#33231a;color:#fff;padding:2px 8px;border-radius:0 4px 4px 0',
+      ''
+    );
+    console.log('Build: ' + (build.date || 'local, date not stamped') +
+                (build.commit ? ' · commit ' + build.commit : ''));
+  })();
+</script>
 
 </body>
 </html>
