@@ -9,10 +9,6 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="theme-color" content="#f8ecd9">
 
-<!-- проставляются при сборке (scripts/stamp-build.sh); локально остаются пустыми -->
-<meta name="build:version" content="dev">
-<meta name="build:date" content="">
-<meta name="build:commit" content="">
 
 <link rel="canonical" href="https://kvendingoldo.github.io/nazook-pin/">
 <link rel="alternate" hreflang="ru" href="https://kvendingoldo.github.io/nazook-pin/">
@@ -544,16 +540,11 @@
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
-<!-- версия и дата в консоли: работают и без сборки —
-     если меты пустые, дата берётся из Last-Modified, который отдаёт GitHub Pages -->
+<!-- дата публикации в консоли: берётся из Last-Modified, который отдаёт GitHub Pages -->
 <script>
   (function () {
     var REPO = 'kvendingoldo/nazook-pin';
 
-    var meta = function (name) {
-      var el = document.querySelector('meta[name="build:' + name + '"]');
-      return (el && el.content || '').trim();
-    };
     var human = function (value) {
       var d = new Date(value);
       return isNaN(d) ? String(value) : d.toLocaleString('ru-RU', { dateStyle: 'long', timeStyle: 'short' });
@@ -563,13 +554,8 @@
       return isNaN(d) ? String(value) : d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
     };
 
-    var stamped = meta('date');
-    var build = {
-      // сборка проставила меты (CI, docker) — берём их; иначе дата публикации файла
-      stamped:   Boolean(stamped),
-      version:   meta('version') !== 'dev' ? meta('version') : '',
-      date:      stamped || document.lastModified,
-      commit:    meta('commit'),
+    var site = {
+      date: document.lastModified,
       // последний коммит по требованию — сетевой запрос только когда его позвали руками
       latest: function () {
         return fetch('https://api.github.com/repos/' + REPO + '/commits/main')
@@ -582,10 +568,10 @@
           .catch(function (e) { console.warn('GitHub API недоступен: ' + e.message); });
       }
     };
-    window.nazook = build;
+    window.nazook = site;
 
     console.log(
-      '%cЗначок «Назук»%c' + (build.version || shortDate(build.date)) + '%c',
+      '%cЗначок «Назук»%c' + shortDate(site.date) + '%c',
       'background:#a8551a;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px 0 0 4px',
       'background:#33231a;color:#fff;padding:2px 8px;border-radius:0 4px 4px 0',
       ''

@@ -55,55 +55,6 @@ sed 's|</head>|<style>.lang{visibility:hidden}</style></head>|' \
 rm .og-shot.tmp.html
 ```
 
-## Версия и дата сборки
-
-Обе версии сайта печатают в консоль браузера одну строку — версию либо дату
-публикации. Подробности лежат в `window.nazook` (`date`, `stamped`, `version`,
-`commit`):
-
-```
-Значок «Назук»  18 сент. 2026 г.
-```
-
-Сборки у сайта нет: Pages настроены как **Deploy from a branch**, файлы из `main`
-публикуются как есть. Поэтому дата берётся из заголовка `Last-Modified`, который
-Pages отдаёт для каждого файла (`document.lastModified`) — это время публикации.
-Коммит по требованию: `nazook.latest()` в консоли дёргает GitHub API и печатает
-последний коммит `main` (запрос уходит только при ручном вызове).
-
-Если сборка всё-таки есть (CI или docker), приоритет у мет
-`<meta name="build:version|date|commit">` — тогда в консоли вместо «Опубликовано»
-будет «Сборка» с точной версией. Проставляет их `scripts/stamp-build.sh`:
-
-```sh
-APP_VERSION=1.0.0 sh scripts/stamp-build.sh    # обе версии сайта
-sh scripts/stamp-build.sh index.html           # только указанные файлы
-```
-
-Без переменных версия и коммит берутся из git (`git describe --tags --always`,
-`git rev-parse --short HEAD`), дата — текущий UTC. Скрипт правит файлы на месте,
-поэтому в репозитории меты остаются пустыми: штампует их сборка, а не коммит.
-
-Шаг есть в `pages.yml` (версия — `build-<номер запуска>`), но сработает он только
-после переключения Settings → Pages → Source на **GitHub Actions**: в текущем режиме
-Pages публикует ветку напрямую и артефакт workflow игнорирует.
-
-## Docker
-
-```sh
-docker build -t nazook-pin \
-  --build-arg APP_VERSION="$(git describe --tags --always)" \
-  --build-arg GIT_SHA="$(git rev-parse --short HEAD)" \
-  --build-arg BUILD_DATE="$(date -u +%Y-%m-%dT%H:%M:%SZ)" .
-
-docker run --rm -p 8080:80 nazook-pin   # http://localhost:8080
-```
-
-Сборка двухстадийная: alpine штампует версию тем же `stamp-build.sh`, nginx
-раздаёт результат. Те же значения уходят в OCI-лейблы
-(`org.opencontainers.image.version|created|revision`). Все три аргумента
-необязательны — без них будет `dev`, дата в HTML проставится временем сборки.
-
 ## Локальный просмотр
 
 Ссылки языкового переключателя ведут на «чистые» адреса (`/en/`), поэтому
