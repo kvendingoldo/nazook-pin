@@ -544,29 +544,52 @@
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
-<!-- версия и дата сборки в консоли -->
+<!-- версия и дата в консоли: работают и без сборки —
+     если меты пустые, дата берётся из Last-Modified, который отдаёт GitHub Pages -->
 <script>
   (function () {
+    var REPO = 'kvendingoldo/nazook-pin';
+
     var meta = function (name) {
       var el = document.querySelector('meta[name="build:' + name + '"]');
       return (el && el.content || '').trim();
     };
-
-    var build = {
-      version: meta('version') || 'dev',
-      date:    meta('date'),
-      commit:  meta('commit')
+    var human = function (value) {
+      var d = new Date(value);
+      return isNaN(d) ? String(value) : d.toLocaleString('ru-RU', { dateStyle: 'long', timeStyle: 'short' });
     };
-    window.nazook = { build: build };
+    var shortDate = function (value) {
+      var d = new Date(value);
+      return isNaN(d) ? String(value) : d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
+    };
+
+    var stamped = meta('date');
+    var build = {
+      // сборка проставила меты (CI, docker) — берём их; иначе дата публикации файла
+      stamped:   Boolean(stamped),
+      version:   meta('version') !== 'dev' ? meta('version') : '',
+      date:      stamped || document.lastModified,
+      commit:    meta('commit'),
+      // последний коммит по требованию — сетевой запрос только когда его позвали руками
+      latest: function () {
+        return fetch('https://api.github.com/repos/' + REPO + '/commits/main')
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
+          .then(function (c) {
+            console.log('Последний коммит: ' + c.sha.slice(0, 7) + ' · ' + human(c.commit.committer.date) +
+                        ' · ' + c.commit.message.split('\n')[0]);
+            return c.sha.slice(0, 7);
+          })
+          .catch(function (e) { console.warn('GitHub API недоступен: ' + e.message); });
+      }
+    };
+    window.nazook = build;
 
     console.log(
-      '%cЗначок «Назук»%c' + build.version + '%c',
+      '%cЗначок «Назук»%c' + (build.version || shortDate(build.date)) + '%c',
       'background:#a8551a;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px 0 0 4px',
       'background:#33231a;color:#fff;padding:2px 8px;border-radius:0 4px 4px 0',
       ''
     );
-    console.log('Сборка: ' + (build.date || 'локальная, дата не проставлена') +
-                (build.commit ? ' · коммит ' + build.commit : ''));
   })();
 </script>
 

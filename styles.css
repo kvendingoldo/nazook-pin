@@ -529,7 +529,14 @@
     .get__text { max-width: 62ch; }
     /* карточка в одну колонку: значок сверху, текст под ним */
     .support { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
-    .support__figure { justify-self: start; width: min(13rem, 60%); }
+    .support__figure { justify-self: start; width: min(13rem, 72%); }
+    /* штамп уменьшается вместе с иллюстрацией, иначе перекрывает её целиком */
+    .support__stamp {
+      inset-inline-start: 4%;
+      padding: 3px var(--space-2);
+      font-size: .6875rem;
+      letter-spacing: .1em;
+    }
     .support__text, .support__kicker { max-width: 62ch; }
     .hero__grid { gap: var(--space-5); padding-block-end: clamp(8rem, 30vw, 15rem); }
     .hero__bridge { height: clamp(8rem, 26vw, 15rem); }
@@ -552,6 +559,7 @@
     .hero__lead { margin-inline: auto; }
     .hero__actions { width: 100%; flex-direction: column; align-items: stretch; }
     .hero__actions .btn { width: 100%; }
+    .support { padding: var(--space-5); }
     .authors__list { grid-template-columns: minmax(0, 1fr); max-width: 22rem; }
     .chip { padding-inline: var(--space-2); }
     .author {
