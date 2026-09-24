@@ -299,7 +299,7 @@
     transition: box-shadow var(--duration) var(--ease);
   }
   /* фотографии сняты в очень разном свете — лёгкая нормализация,
-     чтобы три портрета читались одним рядом */
+     чтобы портреты читались одним рядом */
   .avatar img {
     width: 100%;
     height: 100%;
@@ -492,15 +492,14 @@
   .section--joined { border-block-start: 0; padding-block-start: 0; }
 
   /* --- Авторы --- */
-  .authors__heading { font-size: var(--text-xl); }
   .authors__list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-6) var(--space-7);
-    /* уже контейнера: втроём люди должны читаться группой, а не тремя точками в ряду */
-    max-width: 46rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+    /* уже контейнера: команда должна читаться группой, а не точками в ряду */
+    max-width: 50rem;
     margin-inline: auto;
-    margin-block-start: var(--space-6);
+    margin-block-start: var(--space-5);
     padding: 0;
     list-style: none;
   }
@@ -549,6 +548,7 @@
     .hero__grid { gap: var(--space-5); padding-block-end: clamp(8rem, 30vw, 15rem); }
     .hero__bridge { height: clamp(8rem, 26vw, 15rem); }
     .hero__pin  { width: min(15rem, 100%); }
+    .authors__list { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 30rem; }
   }
 
   /* Мобильный: значок над заголовком, действия на всю ширину */
