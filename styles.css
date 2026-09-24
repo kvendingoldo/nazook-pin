@@ -516,6 +516,12 @@
     text-transform: uppercase;
     color: var(--text-secondary);
   }
+  .footer__link {
+    margin-block-end: var(--space-2);
+    font-size: var(--text-xs);
+    letter-spacing: normal;
+    text-transform: none;
+  }
 
   /* ============================================================
      RESPONSIVE — композиция, а не сжатие
