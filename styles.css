@@ -320,7 +320,10 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--space-2);
-    margin-block-start: var(--space-1);
+    /* имя может переноситься на две строки — контакты прижаты к низу карточки,
+       чтобы в ряду иконки стояли на одной линии */
+    margin-block-start: auto;
+    padding-block-start: var(--space-1);
   }
 
   /* Закрывающая строка истории: точка в конце рассказа, а не врезка */
@@ -495,9 +498,9 @@
   .authors__list {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-6);
+    gap: var(--space-6) var(--space-7);
     /* уже контейнера: команда должна читаться группой, а не точками в ряду */
-    max-width: 50rem;
+    max-width: 54rem;
     margin-inline: auto;
     margin-block-start: var(--space-5);
     padding: 0;
@@ -583,7 +586,7 @@
     }
     .avatar { grid-area: avatar; width: 5.5rem; height: 5.5rem; }
     .author__name { grid-area: name; }
-    .author__links { grid-area: links; justify-content: flex-start; margin-block-start: 0; }
+    .author__links { grid-area: links; justify-content: flex-start; margin-block-start: 0; padding-block-start: 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
